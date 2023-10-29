@@ -1,0 +1,17 @@
+<!-- dimmed bg  -->
+<!-- <div class="fixed inset-0 hidden bg-gray-100 bg-opacity-75 transition-opacity md:block"></div> -->
+<!-- blured bg  -->
+<div class="fixed z-30 inset-0 hidden backdrop-blur-sm md:block" (click)="onDismissClick()"></div>
+<div class="bg-white z-40 fixed top-1/4 left-1/3 rounded-2xl flex items-center justify-center ">
+  <div class=" rounded-2xl shadow-2xl border border-gray-200">
+    <div class="modal-header">
+      <ng-content select="[modal-header]"></ng-content>
+    </div>
+    <div class="modal-body">
+      <ng-content select="[modal-body]"></ng-content>
+      </div>
+      <div class="modal-footer">
+        <ng-content select="[modal-footer]"></ng-content>
+      </div>
+      </div>
+</div>

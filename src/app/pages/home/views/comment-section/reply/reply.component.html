@@ -1,0 +1,82 @@
+<article [ngClass]="currentTheme == 'dark'?'border-white/5':''"
+  class="p-6 mb-6 ltr:ml-6 ltr:lg:ml-12 rtl:mr-6 rtl:lg:mr-12 text-base rounded-lg border">
+  <footer class="flex justify-between items-center mb-2">
+    <ng-container [ngSwitch]="reply.isAnonymous">
+      <div class="flex items-center relative" *ngSwitchCase='false'>
+        <img class="inline-block h-10 w-10 rounded-full" (mouseenter)="toggleFollowingPopOver()"
+          (mouseleave)="toggleFollowingPopOver()" [src]="reply.user?.user_img" alt="" />
+        <div class="ml-3 flex items-center">
+          <p [class.text-gray-200]="currentTheme=='dark'" class="text-base leading-6 font-medium"
+            (mouseenter)="toggleFollowingPopOver()">
+            {{reply.user.email}}
+          </p>
+          <span class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
+            @Intlaq . {{reply.createdAt |date}}
+          </span>
+        </div>
+        <!-- user popover -->
+                          <app-user-popover [currentTheme]="currentTheme" [currentUser]="currentUser" [article]="reply"></app-user-popover>
+        <!-- user popover -->
+        </div>
+        <div *ngSwitchCase="true">
+          <div class=" inline-flex items-center justify-center">
+            <svg class="w-8 h-8 p-1 ring-2 ring-gray-300 !text-gray-400 rounded-full" xmlns="http://www.w3.org/2000/svg" x="0px"
+              y="0px" width="100" height="100" viewBox="0 0 50 50">
+              <path
+                d="M 25 2 C 15.058594 2 7 4.6875 7 8 L 7 25 C 7 30.082031 12.417969 44.082031 25 47 C 37.582031 44.082031 43 30.082031 43 25 L 43 8 C 43 4.6875 34.941406 2 25 2 Z M 25 4 C 35.5 4 41 6.972656 41 8 L 41 25 C 41 29.136719 36.667969 40.523438 27 44.296875 L 27 38 L 23 38 L 23 44.296875 C 13.332031 40.523438 9 29.136719 9 25 L 9 8 C 9 6.972656 14.5 4 25 4 Z M 17 11 C 15.003906 11 12.855469 11.878906 11 15 C 12.953125 13.640625 14.613281 13 16 13 C 18.6875 13 20.027344 16.148438 20.4375 16.5625 C 21.023438 17.148438 21.972656 17.148438 22.5625 16.5625 C 23.148438 15.976563 23.148438 15.027344 22.5625 14.4375 C 22.195313 14.074219 20.4375 11 17 11 Z M 33 11 C 29.5625 11 27.804688 14.074219 27.4375 14.4375 C 26.851563 15.027344 26.851563 15.976563 27.4375 16.5625 C 28.027344 17.148438 28.976563 17.148438 29.5625 16.5625 C 29.972656 16.148438 31.3125 13 34 13 C 35.386719 13 37.046875 13.640625 39 15 C 37.144531 11.878906 34.996094 11 33 11 Z M 16 17 C 14.359375 17 12.917969 17.59375 12 18.5 C 12.917969 19.40625 14.359375 20 16 20 C 17.640625 20 19.082031 19.40625 20 18.5 C 19.082031 17.59375 17.640625 17 16 17 Z M 34 17 C 32.359375 17 30.917969 17.59375 30 18.5 C 30.917969 19.40625 32.359375 20 34 20 C 35.640625 20 37.082031 19.40625 38 18.5 C 37.082031 17.59375 35.640625 17 34 17 Z M 11 26 L 16 34 L 23 34 L 25 32 L 27 34 L 34 34 L 39 26 L 33 31 L 29 31 L 26 28 L 24 28 L 21 31 L 17 31 Z">
+              </path>
+            </svg>
+            <div class="ml-3 flex items-center">
+              Anonymous
+              <span
+                class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
+                . {{reply.createdAt |date}}
+              </span>
+            </div>
+          </div>
+        </div>
+        </ng-container>
+    <button id="dropdownComment2Button" data-dropdown-toggle="dropdownComment2" (click)="handleActions($event)"
+      class="inline-flex relative items-center p-2 text-sm font-medium text-center rounded-lg focus:ring-4 focus:outline-none focus:ring-gray-50 :bg-gray-900 :hover:bg-gray-700 :focus:ring-gray-600"
+      type="button">
+      <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
+        </path>
+      </svg>
+      <span class="sr-only">Comment settings</span>
+          <!-- Dropdown menu -->
+          <div id="dropdownComment1" *ngIf="showActionsDDL"
+            [ngClass]="currentTheme=='dark'?'bg-zinc-800  text-white':'bg-white text-gray-800'"
+            class="absolute ltr:right-0 rtl:left-0 top-6  z-10 w-36 rounded divide-y shadow">
+            <ul class="py-1 text-sm " aria-labelledby="dropdownMenuIconHorizontalButton">
+              <li *ngIf="currentUser.id == reply.userId" (click)="handleReplyEdit($event)">
+                <a [ngClass]="currentTheme == 'dark'?'hover:bg-zinc-900':'hover:bg-gray-200'"
+                  class="block py-2 px-4 ">{{"Edit"|translate}}</a>
+              </li>
+              <li *ngIf="currentUser.id == reply.userId" (click)="handleReplyRemove($event)">
+                <a [ngClass]="currentTheme == 'dark'?'hover:bg-zinc-900':'hover:bg-gray-200'"
+                  class="block py-2 px-4">{{"Remove"|translate}}</a>
+              </li>
+              <li *ngIf="currentUser.id != reply.userId" (click)="handleCommentReport($event)">
+                <a [ngClass]="currentTheme == 'dark'?'hover:bg-zinc-900':'hover:bg-gray-200'"
+                  class="block py-2 px-4 ">{{"Report"|translate}}</a>
+              </li>
+              </ul>
+              </div>
+          <!-- Dropdown menu -->
+          </button>
+  </footer>
+  <p class="">{{reply.content}}</p>
+  <div class="flex items-center mt-4 space-x-4">
+    <!-- <button type="button" class="flex items-center text-sm hover:underline">
+      <svg aria-hidden="true" class="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+        </path>
+      </svg>
+      Reply
+    </button> -->
+  </div>
+</article>

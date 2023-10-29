@@ -1,0 +1,49 @@
+<!-- blured bg  -->
+<div [ngClass]="currentTheme == 'dark'? 'bg-black/40 opacity-100':''" class="fixed inset-0 z-40 backdrop-blur-sm"
+  (click)="onDismissClick()"></div>
+<div class="max-w-3xl rounded-2xl w-[50%] z-40 fixed  xs:top-[15%]  xs:left-[25%] mx-auto ">
+    <div [ngClass]="currentTheme == 'dark'?'bg-zinc-900 border-white/5':'bg-zinc-50 border-zinc-900/10'"
+      class="mx-auto transform-gpu overflow-hidden rounded-lg  shadow-xl border   sm:max-w-xl opacity-100 scale-100"
+      id="headlessui-dialog-panel-:rp:" data-headlessui-state="open">
+      <div role="combobox" aria-expanded="true" aria-haspopup="listbox" aria-labelledby=":r0:-label"
+        aria-owns=":r0:-list">
+        <form role="search">
+          <div class="group relative flex h-12"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"
+              class="pointer-events-none absolute left-3 top-0 h-full w-5 stroke-zinc-500">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12.01 12a4.25 4.25 0 1 0-6.02-6 4.25 4.25 0 0 0 6.02 6Zm0 0 3.24 3.25"></path>
+            </svg><input [(ngModel)]="t" (input)="handleTchange()" [ngModelOptions]="{standalone: true}"
+              [ngClass]="currentTheme == 'dark'?'text-white':'text-zinc-900'"
+              class="flex-auto appearance-none bg-transparent pl-10 outline-none placeholder:text-emerald-50 focus:w-full focus:flex-none  sm:text-sm [&amp;::-webkit-search-cancel-button]:hidden [&amp;::-webkit-search-decoration]:hidden [&amp;::-webkit-search-results-button]:hidden [&amp;::-webkit-search-results-decoration]:hidden pr-4"
+              aria-autocomplete="both" aria-labelledby=":r0:-label" id=":r0:-input" autocomplete="off" autocorrect="off"
+              autocapitalize="off" enterkeyhint="go" spellcheck="false" placeholder="Find something..." maxlength="512"
+              type="search" value="a" aria-activedescendant=":r0:-item-0" aria-controls=":r0:-list"></div>
+          <div
+                 [ngClass]="currentTheme == 'dark'?'bg-white/2.5 border-zinc-100/5 ':'border-zinc-200 bg-white'"       class="border-t  empty:hidden ">
+                        <ul role="listbox" aria-labelledby=":r0:-label" id=":r0:-list">
+                          <ng-container *ngIf="searchResults.length > 0 ;else noResults">
+                            <li *ngFor="let result of searchResults " class="group block px-4 py-3 hover:cursor-pointer"
+                              [ngClass]="currentTheme == 'dark'?'hover:bg-zinc-800/50':'hover:bg-gray-100'"
+  aria-labelledby=":r19:-hierarchy :r19:-title" id=":r0:-item-0" role="option" aria-selected="true">
+  <div id=":r19:-title" aria-hidden="true" [ngClass]="currentTheme=='dark'?'text-white':'text-zinc-900'"
+    class="text-sm font-medium  ">
+    <span>{{result.title}}</span>
+  </div>
+  <div id=":r19:-hierarchy" aria-hidden="true" class="mt-1 truncate whitespace-nowrap text-2xs text-zinc-500">
+    <span><span class="" [innerHTML]="result.content"></span></span><span class="sr-only">/</span>
+  </div>
+  </li>
+                          </ng-container>
+                          <ng-template #noResults>
+                            <li class="group block px-4 py-3 hover:cursor-pointer">
+                              <div id=":r19:-title" aria-hidden="true" class="text-sm font-medium  ">
+                                <span>No results found</span>
+                              </div>
+                            </li>
+                          </ng-template>
+                        </ul>
+                        </div>
+        </form>
+      </div>
+    </div>
+  </div>

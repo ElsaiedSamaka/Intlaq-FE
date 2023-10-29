@@ -1,0 +1,187 @@
+<section class="h-screen overflow-hidden"
+  [ngClass]="theme == 'dark'?'bg-[#1b1d1e] text-dark-secondary':'bg-gray-50  text-light-secondary'">
+  <!-- shap -->
+<!-- lang selector -->
+<div class="absolute top-5 left-5">
+  <app-lang-selector></app-lang-selector>
+</div>
+<!-- lang selector -->
+  <div class="pointer-events-none">
+    <div
+      class="absolute z-10 inset-0 rounded-2xl transition duration-300 [mask-image:linear-gradient(white,transparent)] group-hover:opacity-50">
+      <svg aria-hidden="true"
+        class="absolute inset-x-0 inset-y-[-30%] h-[100%]  overflow-hidden w-full skew-y-[-18deg] fill-black/[0.02] stroke-black/5 :fill-white/1 :stroke-white/2.5">
+        <defs>
+          <pattern id=":rd:" width="72" height="56" patternUnits="userSpaceOnUse" x="50%" y="-6">
+            <path d="M.5 56V.5H72" fill="none"></path>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" stroke-width="0" fill="url(#:rd:)"></rect><svg x="50%" y="-6"
+          class="overflow-visible">
+          <rect stroke-width="0" width="73" height="57" x="-72" y="112"></rect>
+          <rect stroke-width="0" width="73" height="57" x="72" y="168"></rect>
+        </svg>
+      </svg>
+    </div>
+  </div>
+  <!-- shap -->
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-full overflow-hidden lg:py-0">
+    <div class="flex flex-row items-center justify-center h-12 w-full my-2">
+      <div class="flex items-center justify-center rounded-3xl">
+        <svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5"></path>
+        </svg>
+          <div class="typewriter text-2xl" [class.text-dark-secondary]="theme=='dark'">
+            <pre>Intlaq</pre>
+          </div>
+      </div>
+    </div>
+    <div [ngClass]="theme == 'dark'?'bg-dark-accent text-dark-secondary':'bg-white  text-light-secondary'"
+      class="w-full rounded-2xl shadow md:mt-0 max-w-2xl xl:p-0">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+
+        <h1 class="text-xl font-bold leading-tight tracking-tight  md:text-2xl" translate>
+          Create an account
+        </h1>
+        <form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="space-y-4 md:space-y-6">
+          <div class="grid md:grid-cols-4 sm:grid-cols-1 gap-x-2">
+            <div class="firstname">
+            <app-input [control]="authForm.controls.firstname" type="text" label="firstname" [size]="50"
+              [maxlength]="80" [autofocus]="true" [required]="true"></app-input>
+              </div>
+            <div class="lastname">
+              <app-input [control]="authForm.controls.lastname" type="text" label="lastname" [size]="50"
+                [maxlength]="80"  [required]="true"></app-input>
+            </div>
+            <div class="national col-span-2">
+                <app-input [control]="authForm.controls.nationalID" placeholder="29700000000000" type="text" label="nationalID" [size]="50" 
+                  [maxlength]="14" [minlength]="14" [required]="true" appNumaric></app-input>
+            </div>
+            <div class="email col-span-2">
+              <app-input [control]="authForm.controls.email" placeholder="email@mail.com" type="email" label="email" [size]="50"
+                [maxlength]="80" [autofocus]="true" [required]="true" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></app-input>
+            </div>
+              <div class="email">
+                <app-input [control]="authForm.controls.phonenumber" placeholder="01150567130" type="tel" label="phonenumber" [size]="50"
+                  [maxlength]="11" [autofocus]="true" [required]="true" pattern="^01[0-9]{9}$"></app-input>
+              </div>
+           
+            <div class="birthdate">
+               <app-input [control]="authForm.controls.birthdate" type="date" label="birthdate" [size]="50"
+                     [required]="true"></app-input>
+            </div>
+            <div class="city">
+               <app-input [control]="authForm.controls.city" placeholder="e.g. Mansourah" type="text" label="city" [size]="50"
+                        [required]="true"></app-input>
+            </div>
+            <div class="experience col-span-2">
+              <app-input [control]="authForm.controls.experienceLevel" type="select"
+                [options]="[ {id: 1, label: 'Junior',value: 'Junior'},{id: 2, label: 'Mid',value: 'Mid'},{id: 3, label: 'Senior',value:'Senior'}]"
+                label="experience level*"></app-input>
+            </div>
+            <div>
+            <app-counter label="experience years*" (counterEmitter)="handleCounterEmitter($event)"></app-counter>
+            </div>
+            <div class="biography col-span-full">
+               <app-input [control]="authForm.controls.biography" type="textarea" label="biography" [size]="50" [maxlength]="100"
+                          [required]="true"></app-input>
+            </div>
+            <div class="programging-languages col-span-full">
+              <programing-lang-input [currentTheme]="theme" (programmingLangEmitter)="handleSelectedProgammingLanguages($event)"></programing-lang-input>
+              </div>
+              
+            <div class="password col-span-full">
+            <app-input [control]="authForm.controls.password" placeholder="********"
+              [type]="showPassword ? 'text':'password'" label="password" [minlength]="8" [maxlength]="25"
+              [required]="true" title="8 حروف او اكثر">
+              <svg class="absolute right-5 bottom-2.5 w-5 h-5 text-gray-400 hover:text-gray-900 hover:cursor-pointer" fill="none"
+                stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true" (click)="togglePassword()" *ngIf="!showPassword" input-icon>
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z">
+                </path>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <svg class="absolute right-5  bottom-2.5 w-5 h-5 text-gray-400 hover:text-gray-900 hover:cursor-pointer" fill="none"
+                stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true" (click)="togglePassword()" *ngIf="showPassword" input-icon>
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88">
+                </path>
+              </svg>
+            </app-input>
+            </div>
+            <div class="password-confirmation col-span-full">
+            <app-input [control]="authForm.controls.passwordConfirmation" placeholder="********"
+              [type]="showPasswordConfirmation ? 'text':'password'" label="password confirmation" [minlength]="8" [maxlength]="25"
+              [required]="true" title="8 حروف او اكثر">
+              <svg class="absolute right-5 bottom-2.5 w-5 h-5 text-gray-400 hover:text-gray-900 hover:cursor-pointer" fill="none"
+                stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true" (click)="togglePasswordConfirmation()" *ngIf="!showPasswordConfirmation" input-icon>
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z">
+                </path>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <svg class="absolute right-5  bottom-2.5 w-5 h-5 text-gray-400 hover:text-gray-900  hover:cursor-pointer" fill="none"
+                stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true" (click)="togglePasswordConfirmation()" *ngIf="showPasswordConfirmation" input-icon>
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88">
+                </path>
+              </svg>
+            </app-input>
+            </div>
+          </div>
+          <div class="flex ">
+            <div class="flex items-center justify-between w-full h-5">
+              <div class="rememberMe inline-flex">
+              <app-input [control]="authForm.controls.rememberMe" [id]="'rememberMe'" [name]="'rememberMe'" [value]="rememberMe" [type]="'checkbox'">
+              </app-input>
+              <label for="rememberMe" class="font-light ml-3">{{'Remember me'|translate}}</label>
+              </div>
+              <div class="user-type flex space-x-2">
+                <label [ngClass]="theme == 'dark'?'  text-dark-secondary':'  text-light-secondary'" [class.bg-light-primary]="authForm.controls.userType.value=='Employer'"
+            class="w-full border border-green-600 hover:border-green-700 hover:cursor-pointer hover:text-gray-900 focus:ring-2 focus:ring-green-300  font-semibold rounded-3xl  px-5 py-2.5 text-center ">
+                  <input class="appearance-none" type="radio" value="Employer" formControlName="userType">
+                  <span class="inline-flex space-x-1 items-center">
+                    Employer
+                    <img src="../../../../../assets/svg/employer.svg" class="w-6 h-6" alt="Employer"> 
+                  </span>
+                </label>
+                <label [ngClass]="theme == 'dark'?'  text-dark-secondary':'  text-light-secondary'" [class.bg-light-primary]="authForm.controls.userType.value=='Employee'"
+            class="w-full border border-green-600 hover:border-green-700 hover:cursor-pointer hover:text-gray-900 focus:ring-2 focus:ring-green-300  font-semibold rounded-3xl  px-5 py-2.5 text-center ">
+                  <input class="appearance-none" type="radio" value="Employee" formControlName="userType">
+                  <span class="inline-flex space-x-1 items-center">Employee
+                    <img src="../../../../../assets/svg/employee.svg" class="w-6 h-6" alt="Employee">
+
+                  </span>
+                </label>
+                </div>
+            </div>
+          </div>
+          <!-- [disabled]="authForm.invalid" -->
+          <button type="submit" 
+            [ngClass]="theme == 'dark'?'bg-dark-primary  text-dark-secondary':'bg-light-primary  text-light-secondary'"
+            class="w-full border border-green-600 hover:bg-light-accent hover:cursor-pointer hover:text-gray-50 focus:ring-2 focus:ring-green-300  font-semibold rounded-3xl  px-5 py-2.5 text-center ">{{"Create an account"|translate}}</button>
+          <p class=" font-light ">
+            {{"Already have an account?"|translate}} <a class="font-medium text-green-400 hover:underline hover:text-green-600"
+              routerLink="/">{{"Login here"|translate}}</a>
+          </p>
+        </form>
+      </div>
+    </div>
+    <div class="flex space-x-2" [ngClass]="theme == 'dark'?' text-dark-secondary':'  text-light-secondary'"><span>made with
+        ❤️ by</span><span><a class="hover:underline decoration-emerald-500 decoration-wavy decoration-2"
+            href="https://twitter.com/ElsaiedSamaka" target="_blank">
+          <i> Saied
+            Samaka</i></a></span>
+    </div>
+  </div>
+</section>
+<!-- Toast -->
+<app-toast *ngIf="showToast" toastType="error" [toastMessage]="toastMessage" (dismiss)="toggleToast()"></app-toast>
+<!-- loader -->
+<app-loading-spinner *ngIf="showLoader"></app-loading-spinner>

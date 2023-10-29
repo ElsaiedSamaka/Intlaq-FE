@@ -1,0 +1,43 @@
+<div [ngClass]="currentTheme=='dark'?'bg-[#18181b] border-white/10':'bg-white border-gray-200'"
+  class="p-4 mb-4 border  rounded-lg shadow-sm 2xl:col-span-2  sm:p-6 ">
+  <div class="flow-root">
+    <h3 class="text-xl font-semibold text-red-500">{{"Advanced settings"|translate}}</h3>
+    <ul class="divide-y " [ngClass]="currentTheme == 'dark'?'divide-gray-700':'divide-gray-200 '">
+      <li class="py-4" [ngClass]="currentTheme == 'dark'?'text-dark-secondary':'text-gray-900'">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <span class="block text-base font-semibold  truncate "
+              [ngClass]="currentTheme == 'dark'?'text-dark-secondary':'text-gray-900'">
+              {{"Deactivate account"|translate}}
+            </span>
+            <a class="block text-sm font-normal truncate hover:underline ">
+              {{"deactivating will supsend your account untill you sign in again"|translate}}
+            </a>
+          </div>
+          <div class="inline-flex items-center">
+            <a [ngClass]="currentTheme=='dark'?'bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700':'text-gray-900 bg-white  border-gray-300 hover:bg-gray-100'"
+              class="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center  border rounded-lg  focus:ring-4 focus:ring-primary-300 ">{{"Deactivate"|translate}}</a>
+          </div>
+        </div>
+      </li>
+      <li class="py-4">
+        <div class="flex items-center space-x-4">
+          <div class="flex-1 min-w-0">
+            <span class="block text-base font-semibold  truncate "
+              [ngClass]="currentTheme=='dark'?'text-white':' text-gray-900'">
+              {{"Delete account"|translate}}
+            </span>
+            <a class="block text-sm font-normal truncate  hover:underline "
+              [class.text-dark-secondary]="currentTheme=='dark'">
+            {{"permanently delete your account and all of it's content"|translate}}
+            </a>
+          </div>
+          <div class="inline-flex items-center">
+            <a [ngClass]="currentTheme == 'dark'?'bg-gray-800 text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700':'text-gray-900 bg-white border-gray-300 hover:bg-gray-100'"
+              class="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center  border  rounded-lg  focus:ring-4 focus:ring-primary-300 ">{{"Delete"|translate}}</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

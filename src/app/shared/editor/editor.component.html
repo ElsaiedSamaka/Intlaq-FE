@@ -1,0 +1,20 @@
+<div class="editor">
+  <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500">
+    <li class="mr-2 hover:cursor-pointer" *ngFor="let tab of tabs">
+      <a (click)="selectTab(tab.id)"
+        [ngClass]="(selectedTabId === tab.id)?' text-emerald-500 justify-center border-zinc-300 rounded-t-lg hover:text-gray-600 hover:border-gray-300 group':' border-transparent'"
+     translate   class="font-bold text-md inline-flex items-center p-4 border-b-2 ">
+        {{tab.label}}
+      </a>
+    </li>
+  </ul>
+  <div class="view" [ngSwitch]="selectedTabId">
+    <div *ngSwitchCase="1">
+      <angular-editor [(ngModel)]="htmlContent" [config]="config"></angular-editor>
+    </div>
+    <div *ngSwitchCase="2">
+      <div class="html w-full h-40 overflow-scroll" [innerHTML]="htmlContent | sanitizeHtml">
+      </div>
+    </div>
+    </div>
+    </div>

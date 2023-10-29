@@ -1,0 +1,92 @@
+<li
+  [ngClass]="currentTheme=='dark'?'border-white/5 text-dark-secondary hover:text-gray-200 hover:bg-zinc-700/10':'hover:bg-zinc-50'"
+  class="h-26 p-1 my-1 border rounded-lg hover:cursor-pointer ">
+  <div class="flex justify-between space-x-2">
+    <div class="inline-flex">
+      <div
+        [ngClass]="currentTheme=='dark'?'border-white/5 text-dark-secondary hover:text-gray-200 hover:bg-zinc-700/10':'hover:bg-zinc-50'"
+        class class="p-3 border inline-flex rounded-full">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21">
+          </path>
+        </svg>
+      </div>
+      <div class="flex-col ml-1">
+        <div class="flex space-x-1 text-sm text-emerald-500"><b>Company name</b> <span class="">(cairo)</span>
+        </div>
+        <span>
+          <div class="flex items-center ">
+            <svg class="w-3 h-3 text-yellow-300 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 22 20">
+              <path
+                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+            </svg>
+            <p class="ml-2 text-sm font-bold ">4.95</p>
+            <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full :bg-gray-400"></span>
+            <a class="text-xs underline font-medium hover:no-underline">73 reviews</a>
+          </div>
+        </span>
+        <!-- Company popover -->
+        <div data-popover id="popover-company-profile" role="tooltip"
+         [ngClass]="currentTheme=='dark'?'bg-zinc-900 border-white/10':'bg-white'" class="absolute hidden right-0 z-10 text-sm text-gray-500 transition-opacity duration-300  border  rounded-lg shadow-sm w-80 ">
+          <div class="p-3">
+            <div class="flex">
+              <div class="mr-3 shrink-0">
+                <a class="block p-2 rounded-lg">
+                  <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/logo.svg" alt="Flowbite logo">
+                </a>
+              </div>
+              <div>
+                <p class="mb-1 text-base font-semibold leading-none ">
+                  <a class="hover:underline">Flowbite</a>
+                </p>
+                <p class="mb-3 text-sm font-normal">
+                  Tech company
+                </p>
+                <p class="mb-4 text-sm">Open-source library of Tailwind CSS components and Figma design system.</p>
+                <ul class="text-sm">
+                  <li class="flex items-center mb-2">
+                    <span class="mr-2 font-semibold text-gray-400">
+                      <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 21 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M6.487 1.746c0 4.192 3.592 1.66 4.592 5.754 0 .828 1 1.5 2 1.5s2-.672 2-1.5a1.5 1.5 0 0 1 1.5-1.5h1.5m-16.02.471c4.02 2.248 1.776 4.216 4.878 5.645C10.18 13.61 9 19 9 19m9.366-6h-2.287a3 3 0 0 0-3 3v2m6-8a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                      </svg>
+                    </span>
+                    <a class="text-blue-500 hover:underline">https://flowbite.com/</a>
+                  </li>
+                  <!-- <li class="flex items-start mb-2">
+                    <span class="mr-2 font-semibold text-gray-400">
+                      <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        viewBox="0 0 20 18">
+                        <path
+                          d="M17.947 2.053a5.209 5.209 0 0 0-3.793-1.53A6.414 6.414 0 0 0 10 2.311 6.482 6.482 0 0 0 5.824.5a5.2 5.2 0 0 0-3.8 1.521c-1.915 1.916-2.315 5.392.625 8.333l7 7a.5.5 0 0 0 .708 0l7-7a6.6 6.6 0 0 0 2.123-4.508 5.179 5.179 0 0 0-1.533-3.793Z" />
+                      </svg>
+                    </span>
+                    <span class="-mt-1">4,567,346 people like this including 5 of your friends</span>
+                  </li> -->
+                  </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Company popover -->
+      </div>
+    </div>
+    <div class="mr-auto">
+      <svg class="w-7 h-7 text-zinc-500 hover:text-zinc-900" fill="none" stroke="currentColor" stroke-width="1.5"
+        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9">
+        </path>
+      </svg>
+    </div>
+  </div>
+  <hr [ngClass]="currentTheme=='dark'?'border-white/5':''" class="my-2 border">
+  <div class="p-2 flex justify-between items-center">
+    <h3 class="font-semibold text-xl">Full Stack developer</h3>
+    <em class=>12 d</em>
+  </div>
+</li>

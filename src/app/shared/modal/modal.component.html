@@ -1,0 +1,29 @@
+<!-- Main modal -->
+<!-- dimmed bg  -->
+<!-- <div class="fixed z-30 inset-0 hidden bg-gray-50 bg-opacity-0 transition-opacity md:block"></div> -->
+<!-- blured bg  -->
+<div [ngClass]="currentTheme == 'dark'? 'bg-black/40 opacity-100':''" class="fixed inset-0 z-40 backdrop-blur-sm"
+  (click)="onDismissClick()"></div>
+
+<div
+[ngClass]="currentTheme=='dark'?'border-white/10':''"  class="max-w-3xl rounded-2xl w-[50%] z-40 fixed  xs:top-[15%]  xs:left-[25%] mx-auto border shadow-2xl  px-5 py-5 backdrop-blur-3xl ">
+  <div class="flex flex-col w-full  ">
+    <!-- Modal content -->
+    <!-- Modal header -->
+    <div class="modal-header">
+      <ng-content select="[modal-header]"></ng-content>
+    </div>
+    <!-- Modal body -->
+    <div class="modal-body overflow-scroll ">
+    
+      <ng-content select="[modal-body]"></ng-content>
+    
+    </div>
+    <!-- Modal footer -->
+    <div class="modal-footer">
+    
+      <ng-content select="[modal-footer]"></ng-content>
+
+    </div>
+  </div>
+</div>

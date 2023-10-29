@@ -1,0 +1,127 @@
+<div [routerLink]="['/index',article.id]"
+  [ngClass]="currentTheme=='dark'?'bg-white/2.5 hover:shadow-black/5 hover:ring-white/20 ring-white/10':'bg-zinc-50 hover:shadow-zinc-900/5 hover:ring-zinc-900/10 ring-zinc-900/5'"
+  class="group relative flex rounded-2xl ring-1 ring-inset transition-shadow hover:shadow-md  hover:cursor-pointer">
+  <!-- card decoration -->
+  <ng-container [ngSwitch]="currentTheme">
+    <div class="pointer-events-none" *ngSwitchCase="'light'">
+      <div
+        class="absolute inset-0 rounded-2xl transition duration-300 [mask-image:linear-gradient(white,transparent)] group-hover:opacity-50">
+        <svg aria-hidden="true"
+          class="absolute inset-x-0 inset-y-[-30%] h-[160%] w-full skew-y-[-18deg] fill-black/[0.02] stroke-black/5 :fill-white/1 :stroke-white/2.5">
+          <defs>
+            <pattern id=":r7v:" width="72" height="56" patternUnits="userSpaceOnUse" x="50%" y="16">
+              <path d="M.5 56V.5H72" fill="none"></path>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" stroke-width="0" fill="url(#:r7v:)"></rect><svg x="50%" y="16"
+            class="overflow-visible">
+            <rect stroke-width="0" width="73" height="57" x="0" y="56"></rect>
+            <rect stroke-width="0" width="73" height="57" x="72" y="168"></rect>
+          </svg>
+        </svg>
+      </div>
+      <div
+        class="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#D7EDEA] to-[#F4FBDF] opacity-0 transition duration-300 group-hover:opacity-100 :from-[#202D2E] :to-[#303428]"
+        data-projection-id="24" style="-webkit-mask-image: radial-gradient(180px at 0px 0px, white, transparent);">
+      </div>
+      <div
+        class="absolute inset-0 rounded-2xl opacity-0 mix-blend-overlay transition duration-300 group-hover:opacity-100"
+        data-projection-id="25" style="-webkit-mask-image: radial-gradient(180px at 0px 0px, white, transparent);">
+        <svg aria-hidden="true"
+          class="absolute inset-x-0 inset-y-[-30%] h-[160%] w-full skew-y-[-18deg] fill-black/50 stroke-black/70 :fill-white/2.5 :stroke-white/10">
+          <defs>
+            <pattern id=":r80:" width="72" height="56" patternUnits="userSpaceOnUse" x="50%" y="16">
+              <path d="M.5 56V.5H72" fill="none"></path>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" stroke-width="0" fill="url(#:r80:)"></rect><svg x="50%" y="16"
+            class="overflow-visible">
+            <rect stroke-width="0" width="73" height="57" x="0" y="56"></rect>
+            <rect stroke-width="0" width="73" height="57" x="72" y="168"></rect>
+          </svg>
+        </svg>
+      </div>
+    </div>
+    <div class="pointer-events-none" *ngSwitchCase="'dark'">
+      <div
+        class="absolute inset-0 rounded-2xl transition duration-300 [mask-image:linear-gradient(white,transparent)] group-hover:opacity-50">
+        <svg aria-hidden="true"
+          class="absolute inset-x-0 inset-y-[-30%] h-[160%] w-full skew-y-[-18deg] fill-black/[0.02] fill-white/1 stroke-white/2.5">
+          <defs>
+            <pattern id=":R56hdcqla:" width="72" height="56" patternUnits="userSpaceOnUse" x="50%" y="16">
+              <path d="M.5 56V.5H72" fill="none"></path>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" stroke-width="0" fill="url(#:R56hdcqla:)"></rect><svg x="50%" y="16"
+            class="overflow-visible">
+            <rect stroke-width="0" width="73" height="57" x="0" y="56"></rect>
+            <rect stroke-width="0" width="73" height="57" x="72" y="168"></rect>
+          </svg>
+        </svg>
+      </div>
+      <div
+        class="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#D7EDEA] to-[#F4FBDF] opacity-0 transition duration-300 group-hover:opacity-100 dark:from-[#202D2E] dark:to-[#303428]"
+        style="-webkit-mask-image: radial-gradient(180px at 214.5px 228px, white, transparent);"></div>
+      <div
+        class="absolute inset-0 rounded-2xl opacity-0 mix-blend-overlay transition duration-300 group-hover:opacity-100"
+        style="-webkit-mask-image: radial-gradient(180px at 214.5px 228px, white, transparent);"><svg aria-hidden="true"
+          class="absolute inset-x-0 inset-y-[-30%] h-[160%] w-full skew-y-[-18deg] fill-white/2.5 stroke-white/10">
+          <defs>
+            <pattern id=":R1d6hdcqla:" width="72" height="56" patternUnits="userSpaceOnUse" x="50%" y="16">
+              <path d="M.5 56V.5H72" fill="none"></path>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" stroke-width="0" fill="url(#:R1d6hdcqla:)"></rect><svg x="50%" y="16"
+            class="overflow-visible">
+            <rect stroke-width="0" width="73" height="57" x="0" y="56"></rect>
+            <rect stroke-width="0" width="73" height="57" x="72" y="168"></rect>
+          </svg>
+        </svg></div>
+    </div>
+  </ng-container>
+  <!-- card decoration -->
+  
+  <div class="relative rounded-2xl px-4 pb-4 pt-8 w-full">
+      <ng-container [ngSwitch]="article.isAnonymous">
+        <div class="flex items-center group relative" *ngSwitchCase='false'>
+          <img class="inline-block h-10 w-10 rounded-full" [src]="article.user?.user_img" alt="" />
+          <div class="ml-3 flex items-center">
+            <p [class.text-gray-200]="currentTheme=='dark'" class="text-base leading-6 font-medium">
+              {{article.user.email}}
+            </p>
+            <span
+              class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
+              @Intlaq. {{article.createdAt |date}}
+            </span>
+      
+          </div>
+          <!-- user popover -->
+          <app-user-popover [currentTheme]="currentTheme" [currentUser]="currentUser" [article]="article"></app-user-popover>
+          <!-- user popover -->
+        </div>
+      
+        <div *ngSwitchCase="true">
+          <div class=" inline-flex items-center justify-center">
+            <svg [ngClass]="currentTheme == 'dark'?'ring-gray-300/10':'ring-gray-300'"
+              class="w-8 h-8 p-1 ring-2  !text-gray-400 rounded-full" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+              width="100" height="100" viewBox="0 0 50 50">
+              <path
+                d="M 25 2 C 15.058594 2 7 4.6875 7 8 L 7 25 C 7 30.082031 12.417969 44.082031 25 47 C 37.582031 44.082031 43 30.082031 43 25 L 43 8 C 43 4.6875 34.941406 2 25 2 Z M 25 4 C 35.5 4 41 6.972656 41 8 L 41 25 C 41 29.136719 36.667969 40.523438 27 44.296875 L 27 38 L 23 38 L 23 44.296875 C 13.332031 40.523438 9 29.136719 9 25 L 9 8 C 9 6.972656 14.5 4 25 4 Z M 17 11 C 15.003906 11 12.855469 11.878906 11 15 C 12.953125 13.640625 14.613281 13 16 13 C 18.6875 13 20.027344 16.148438 20.4375 16.5625 C 21.023438 17.148438 21.972656 17.148438 22.5625 16.5625 C 23.148438 15.976563 23.148438 15.027344 22.5625 14.4375 C 22.195313 14.074219 20.4375 11 17 11 Z M 33 11 C 29.5625 11 27.804688 14.074219 27.4375 14.4375 C 26.851563 15.027344 26.851563 15.976563 27.4375 16.5625 C 28.027344 17.148438 28.976563 17.148438 29.5625 16.5625 C 29.972656 16.148438 31.3125 13 34 13 C 35.386719 13 37.046875 13.640625 39 15 C 37.144531 11.878906 34.996094 11 33 11 Z M 16 17 C 14.359375 17 12.917969 17.59375 12 18.5 C 12.917969 19.40625 14.359375 20 16 20 C 17.640625 20 19.082031 19.40625 20 18.5 C 19.082031 17.59375 17.640625 17 16 17 Z M 34 17 C 32.359375 17 30.917969 17.59375 30 18.5 C 30.917969 19.40625 32.359375 20 34 20 C 35.640625 20 37.082031 19.40625 38 18.5 C 37.082031 17.59375 35.640625 17 34 17 Z M 11 26 L 16 34 L 23 34 L 25 32 L 27 34 L 34 34 L 39 26 L 33 31 L 29 31 L 26 28 L 24 28 L 21 31 L 17 31 Z">
+              </path>
+            </svg>
+            <div [class.text-dark-secondary]="currentTheme=='dark'" class="ml-3 flex items-center">
+              {{"Anonymous"|translate}}
+              <span
+                class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
+                . {{article.createdAt |date}}
+              </span>
+            </div>
+            </div>
+            </div>
+            </ng-container>
+    <h3 [ngClass]="currentTheme =='dark'?'text-white':'text-zinc-900'" class="mt-4 text-sm font-semibold leading-7 ">
+      <a><span class="absolute inset-0 rounded-2xl"></span>{{article.title}}</a>
+    </h3>
+          <app-truncated-text [htmlContent]="article.content" [currentTheme]="currentTheme"></app-truncated-text>
+  </div>
+</div>

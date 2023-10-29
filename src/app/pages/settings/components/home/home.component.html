@@ -1,0 +1,30 @@
+<section class="flex h-[94vh] flex-col ">
+
+  <div class="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4">
+    <!-- Right Content -->
+    <div class="col-span-full xl:col-auto">
+      <!-- Right Content -->
+      <!-- Left Content -->
+     <!-- profile picture -->
+    <app-profile-settings [currentTheme]="currentTheme" [currentUser]="currentUser"></app-profile-settings>
+     <!-- profile picture -->
+
+      <!-- Left Content -->
+      <!-- Langauage and mode settings -->
+      <app-lang-mode-settings [currentTheme]="currentTheme" [currentUser]="currentUser"></app-lang-mode-settings>
+      <!-- Langauage settings -->
+      <!-- Social accounts -->
+    <app-social-settings [currentTheme]="currentTheme" [currentUser]="currentUser"></app-social-settings>
+                  <!-- Social accounts -->
+                  </div>
+                  <div class="col-span-2">
+                <!-- General info-->
+                <app-general-info [currentUser]="currentUser" [currentTheme]="currentTheme"></app-general-info>
+                <!-- Genral info -->
+            <!-- password settings -->
+            <app-password-settings [currentUser]="currentUser" [currentTheme]="currentTheme"></app-password-settings>
+            <!-- password settings -->
+              </div>
+
+  </div>
+  </section>

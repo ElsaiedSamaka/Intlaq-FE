@@ -1,0 +1,54 @@
+<div class="w-full max-w-md p-4 rounded-lg">
+  <div class="flex items-center justify-between mb-4">
+    <h5 class="text-xl font-bold leading-none" [ngClass]="currentTheme=='dark'?'text-dark-secondary':''">{{"Latest
+      Contacts"|translate}}
+    </h5>
+    <a [routerLink]="['/index','messages']"
+      class="text-sm font-semibold text-emerald-700 hover:underline hover:cursor-pointer">
+      {{"View all"| translate}}
+    </a>
+  </div>
+  <div [ngClass]="currentTheme =='dark'?'text-dark-secondary':''" class="flow-root max-h-64 h-64 overflow-y-scroll">
+    <ul role="list" [ngClass]="currentTheme=='dark'?'':''" class="">
+      <!-- contacted user -->
+      <ng-container *ngIf="conversations.length > 0;else noconversationsfound">
+<li *ngFor="let conversation of conversations" class="group hover:cursor-pointer">
+  <div [ngClass]="currentTheme=='dark'?'bg-zinc-900 hover:bg-zinc-950':'bg-white hover:bg-zinc-50'"
+    class="flex p-1 rounded-md  items-center space-x-4">
+    <div class="flex-shrink-0">
+      <img class="w-8 h-8 rounded-full" [src]="conversation.user2.user_img" alt="Neil image">
+    </div>
+    <div class="relative w-full">
+      <div class="flex-1 min-w-0">
+        <p [ngClass]="currentTheme=='dark'?'group-hover:text-white':''" class="text-sm font-semibold truncate ">
+          {{conversation.user2.email}}
+        </p>
+        <p class="text-sm truncate" [ngClass]="currentTheme=='dark'?'group-hover:text-white':''">
+          {{conversation.messages[conversation.messages.length - 1].message| slice:0:10}}
+        </p>
+      </div>
+      <div class="absolute flex top-0 ltr:right-0 rtl:left-0 text-sm ">
+        <span>{{conversation.updatedAt | date:"'at' hh:mm a"}}</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z">
+          </path>
+        </svg>
+      </div>
+    </div>
+  </div>
+</li>
+      </ng-container>
+      <ng-template #noconversationsfound>
+        <div [ngClass]="currentTheme=='dark'?'text-dark-secondary':''"
+          class="flex-col h-full w-full items-center justify-center align-middle content-center self-center text-center origin-center object-center ">
+          <div class="text-7xl my-2 font-extrabold align-middle self-center items-center content-center">404</div>
+          <span class="">{{"no conversations found"|translate}}</span>
+        </div>
+      </ng-template>
+      <!-- contacted user -->
+      <hr [ngClass]="currentTheme=='dark'?'border-white/10':''" class="my-1">
+      <!-- contacted user -->
+    </ul>
+  </div>
+</div>

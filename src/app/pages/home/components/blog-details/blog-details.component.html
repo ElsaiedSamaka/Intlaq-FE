@@ -1,0 +1,56 @@
+<section class="flex  h-screen overflow-y-scroll flex-col pb-10 ">
+  <div class="flex-auto prose ">
+    <figure class="relative">
+      <a>
+        <img class="object-fill w-full max-h-48" *ngIf="data.article.img" [src]="data.article.img"
+          [alt]="data.article.title">
+      </a>
+      <!-- article title -->
+      <p [class.gradient-text]="currentTheme=='light'" [class.text-gray-200]="currentTheme=='dark'" class
+        class="font-bold text-2xl inline-block my-2">
+        {{data.article.title}}
+      </p>
+      <!-- article title -->
+    </figure>
+    <p [class.text-dark-secondary]="currentTheme == 'dark'" class="lead inline-flex gap-2"><i>{{"By."|translate}}</i>
+      <ng-container [ngSwitch]="data.article.isAnonymous">
+        <span *ngSwitchCase="true" class="font-semibold hover:underline">{{"Anonymous"|translate}}</span>
+        <span *ngSwitchCase="false"
+        class="font-semibold hover:underline">{{data.article.user?.username}}</span>
+      </ng-container>
+      {{"on"|translate}}<b>{{data.article.createdAt | date}} </b> </p>
+    <div class="not-prose mb-8 mt-6 flex justify-between items-center">
+      <div>
+        <!-- tags -->
+        <app-tag [currentTheme]="currentTheme" *ngFor="let tag of data.article.tags" [name]="tag.name"></app-tag>
+        <!-- tags -->
+      </div>
+      <!-- save article icon -->
+      <div
+        [ngClass]="currentTheme=='dark'?'border-white/5 text-dark-secondary hover:text-gray-200 hover:bg-zinc-700/10':'hover:bg-zinc-50'"
+        class="p-2 save-icon cursor-pointer rounded-full border ">
+        <svg class=" w-5 h-5 text-gray-300 peer" [ngClass]="alreadySavedArticle ?'text-yellow-200 fill-current':''" fill="none"
+          (click)="saveArticle($event)"
+          stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z">
+          </path>
+        </svg>
+        <div id="tooltip-default" role="tooltip"
+          [ngClass]="currentTheme == 'dark'?'bg-[#232325] text-dark-secondary border-white/10':'bg-white text-black border-gray-200'"
+          class="absolute opacity-0 peer-hover:opacity-100 top-8 left-0 z-10  inline-block px-3 py-2 text-xs font-medium  transition-opacity duration-300  rounded-lg shadow-md tooltip ">
+          {{"unsave"|translate}}
+          <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+      </div>
+      <!-- save article icon -->
+    </div>
+    <p [class.text-dark-secondary]="currentTheme == 'dark'" class="lead font-semibold" [innerHTML]="data.article.content">
+    </p>
+    <app-comment-section [article]="data.article" [currentTheme]="currentTheme"
+      [currentUser]="currentUser"></app-comment-section>
+    <app-related-articles [article]="data.article" [currentUser]="currentUser"
+      [currentTheme]="currentTheme"></app-related-articles>
+  </div>
+</section>

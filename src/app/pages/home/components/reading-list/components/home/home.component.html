@@ -1,0 +1,114 @@
+<section class="flex h-[94vh] flex-col gap-2 pt-4 ">
+  <div class="grid grid-cols-5 gap-4 h-full ">
+    <div class="sm:col-span-2 xs:col-span-full h-full p-2 border rounded-lg rounded-b-none  "
+      [ngClass]="currentTheme == 'dark'?'bg-[#18181b] border-white/10':'bg-white border-gray-200'">
+    <div [ngClass]="currentTheme == 'dark'?'border-white/10':'border-zinc-900/10'"
+      class="flex items-center justify-between border-b">
+      <span [ngClass]="currentTheme == 'dark'?'text-dark-secondary':''" class="text-xl font-semibold my-2">{{"Reading list"|translate}}</span>
+      <span class="relative group">
+        <!-- archieve icon -->
+        <svg class="w-6 h-6 hover:cursor-pointer" routerLink="archieve" fill="none" stroke="currentColor" stroke-width="1.5"
+          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+          d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z">
+        </path>
+      </svg>
+      <div id="tooltip-default" role="tooltip"
+        [ngClass]="currentTheme == 'dark'?'bg-[#232325] text-dark-secondary border-white/10':'bg-white text-black border-gray-200'"
+        class="absolute opacity-0 group-hover:opacity-100 top-6 z-10  inline-block px-3 py-2 text-sm font-medium  transition-opacity duration-300  rounded-lg shadow-md tooltip ">
+        {{"archieve"|translate}}
+        <div class="tooltip-arrow" data-popper-arrow></div>
+      </div>
+        <!-- archieve icon -->
+      </span>
+    </div>
+    
+      <input type="text" placeholder="search over your saved articles ..."
+        [ngClass]="currentTheme =='dark'?'bg-white/5 ring-inset ring-white/5 ring-2 transition':''"
+        [class.text-white]="currentTheme=='dark'"
+        class="search-contacts  my-1 h-11 w-full items-center gap-2 rounded-full pl-2 pr-3 text-sm text-zinc-500 ring-1 placeholder:text-zinc-400 ring-zinc-900/10 transition hover:ring-zinc-900/20 ui-not-focus-visible:outline-none">
+      <!-- articles  -->
+      <ul class="col-span-2  h-full rounded-lg rounded-b-none overflow-y-scroll ">
+      <ng-container *ngIf="savedArticles.length > 0;else nosavedarticlesfound">
+      <!--article card  -->
+      <li *ngFor="let article of savedArticles;let i=index" [routerLink]="article.postId" routerLinkActive="active"
+        [ngClass]="currentTheme == 'dark'?'border-white/10 hover:bg-zinc-900/5':'border-zinc-900/10 hover:bg-zinc-50'"
+        class="h-26 p-2 my-1 border rounded-lg hover:cursor-pointer">
+        <div class="flex justify-between space-x-2 ">
+          <div class="inline-flex ">
+      <div class="p-3  border inline-flex rounded-full"
+              [ngClass]="currentTheme == 'dark'?'border-white/10':'border-zinc-900/10'">
+            <svg class="text-zinc-700 w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z">
+              </path>
+            </svg>
+            </div>
+      
+            <div class="flex-col ml-1">
+              <div class="flex space-x-1 text-emerald-500"><b>{{article.post.user.email}}</b> <span
+                  class="text-zinc-500 text-xs">({{article.createdAt|date:'short'}})</span>
+              </div>
+              <span>
+                <div [ngClass]="currentTheme == 'dark'?'text-dark-secondary':''" class="flex items-center">
+                  <svg class="w-4 h-4 text-red-500" fill="currentColor" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z">
+                    </path>
+                  </svg>
+                  <p class="ml-2 text-sm font-bold ">{{article.post.loved_posts.length}}</p>
+                  <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full :bg-gray-400"></span>
+                  <a class="text-xs underline font-medium   hover:no-underline">{{article.post.comments.length}} {{"comments"|translate}}</a>
+                </div>
+              </span>
+            </div>
+          </div>
+          <div class="mr-auto">
+          <!-- save icon -->
+            <div
+          (click)="unsave($event,article.postId)"    [ngClass]="currentTheme=='dark'?'border-white/5 text-dark-secondary hover:text-gray-200 hover:bg-zinc-700/10':'hover:bg-zinc-50'"
+              class="p-2 relative save-icon cursor-pointer rounded-full border hover:border-yellow-300">
+              <svg class="text-yellow-300 w-5 h-5 peer" fill="currentColor" stroke="currentColor" stroke-width="1.5"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z">
+                </path>
+              </svg>
+                <div id="tooltip-default" role="tooltip"
+                  [ngClass]="currentTheme == 'dark'?'bg-[#232325] text-dark-secondary border-white/10':'bg-white text-black border-gray-200'"
+                  class="absolute opacity-0 peer-hover:opacity-100 top-8 right-0 z-10  inline-block px-3 py-2 text-xs font-medium  transition-opacity duration-300  rounded-lg shadow-md tooltip ">
+                  {{"unsave"|translate}}
+                  <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+            </div>
+          <!-- save icon -->
+          </div>
+        </div>
+        <div class="p-2 flex justify-between items-center" [ngClass]="currentTheme=='dark'?'text-dark-secondary':''">
+          <h3 class="font-semibold text-xl">{{article.post.title}}</h3>
+          <div>
+          <app-tag [name]="tag.name" [currentTheme]="currentTheme" *ngFor="let tag of article.post.tags"></app-tag>
+          </div>
+        </div>
+      </li>
+      <!--article card  -->
+    </ng-container>
+    <ng-template #nosavedarticlesfound>
+      <div [ngClass]="currentTheme=='dark'?'text-dark-secondary':''"
+        class="flex-col h-full w-full items-center justify-center align-middle content-center self-center text-center origin-center object-center ">
+        <div class="text-7xl my-2 font-extrabold align-middle self-center items-center content-center">404</div>
+        <span class="">{{"no saved articles found"|translate}}</span>
+      </div>
+    </ng-template>
+    </ul>
+  <!-- articles  -->
+  </div>
+    <div [ngClass]="currentTheme == 'dark'?'border-white/10':'border-zinc-900/10'"
+      class="sm:col-span-3 xs:hidden sm:inline  border rounded-lg rounded-b-none h-full overflow-y-scroll">
+          <router-outlet></router-outlet>
+    </div>
+  </div>
+</section>

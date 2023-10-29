@@ -1,0 +1,145 @@
+<div [ngClass]="currentTheme == 'dark'?'border-white/5':''" class="post-card flex items-center space-x-2 border-b p-2">
+  <!-- post-as -->
+  <app-post-as [currentTheme]="currentTheme" [currentUser]="currentUser"></app-post-as>
+  <!-- post-as -->
+  <input type="text" translate (click)="openCreateNewPostModal()"
+    [placeholder]="postAs==true?'Post as Anonymous':'Post as User'"
+   [ngClass]="currentTheme =='dark'?'bg-white/5 ring-inset ring-white/5 ring-2 transition':''" [class.text-white]="currentTheme=='dark'"  class=" h-11 w-full items-center gap-2 rounded-full pl-4 pr-3 text-lg ring-1 ring-zinc-900/10 transition hover:ring-zinc-900/20 ui-not-focus-visible:outline-none lg:flex">
+</div>
+<!-- Create Post Modal -->
+<app-modal *ngIf="showCreateNewPostModal" (dismiss)="closeCreateNewPostModal()">
+  <div modal-header>
+    <div class="flex flex-row-reverse justify-between">
+      <button type="button" (click)="closeCreateNewPostModal()"
+        [class.bg-dark-accent] = "currentTheme =='dark'" [class.text-dark-secondary]="currentTheme =='dark'"
+        class=" border border-transparent hover:border hover:border-gray-300 hover:text-gray-900 rounded-3xl text-sm p-1.5  inline-flex items-center"
+        data-modal-hide="popup-modal">
+        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg" (click)="true">
+          <path fill-rule="evenodd"
+            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <span class="sr-only">Close modal</span>
+      </button>
+      <h3 class="text-xl font-semibold" [class.text-dark-secondary]="currentTheme =='dark'">
+        {{"Create new post"|translate}}
+      </h3>
+    </div>
+  </div>
+  <div modal-body>
+        <ul class="flex flex-wrap mb-2 text-sm font-medium text-center text-gray-500">
+          <li class="mr-2 hover:cursor-pointer" *ngFor="let tab of tabs">
+            <a (click)="selectTab(tab.label)"
+              [ngClass]="(selectedTab === tab.label)?' text-emerald-500 justify-center border-zinc-300 rounded-t-lg hover:text-gray-600 hover:border-gray-300 group':' border-transparent'"
+              translate class="font-bold text-md inline-flex items-center p-4 border-b-2 ">
+              {{tab.label}}
+            </a>
+          </li>
+        </ul>
+  <div class="selectedTab" [ngSwitch]="selectedTab">
+    <div class="create-article" *ngSwitchCase="'Article'">
+      <app-form class="create-article px-2" [fields]="[
+            { name: 'file_img', label: 'file_img', id:'file_img', type: 'file', required:false },
+            { name: 'title', label: 'title', type: 'text', maxlength:60 , minlength:10, autofocus:true, description:'title maxlength 60 char', required:true, validators: [validators.required] },
+            
+          ]" (submitted)="onArticleFormSubmitted($event)" (formStatus)="checkArticleFormStatus($event)">
+          <ng-container form-extensions>
+          <app-tags-input (tagsEmitter)="handleRecievedTags($event)" [currentTheme]="currentTheme"></app-tags-input>
+        <app-editor (html)="handleHTML($event)"></app-editor>
+      </ng-container>
+          <div class=" mt-2 ltr:text-right rtl:text-left" form-actions>
+          <button (click)="closeCreateNewPostModal()"
+            [ngClass]="currentTheme=='dark'?'border-white/10 hover:text-white':'hover:border-gray-300'"
+            class="inline-flex  shrink-0 rounded-3xl border hover:border  mx-1 px-6 py-2.5 font-semibold text-gray-500 hover:text-black focus:outline-none active:text-white disabled:cursor-not-allowed">
+            {{"cancel"|translate}}
+          </button>
+          <div class="inline-flex" [ngSwitch]="isArticleFormSubmitted">
+            <button type="submit" [disabled]="!isArticleFormValid" *ngSwitchCase="false"
+              [ngClass]="currentTheme == 'dark'?'bg-dark-primary  text-dark-secondary disabled:bg-dark-accent disabled:border-gray-200/10':'bg-light-primary  text-light-secondary disabled:bg-gray-100/10 disabled:border-gray-200/10 disabled:hover:text-gray-300 '"
+              class=" inline-flex justify-center items-center space-x-2 border border-green-600 hover:bg-light-accent hover:cursor-pointer hover:text-gray-50 focus:ring-2 focus:ring-green-300  font-semibold rounded-3xl  px-5 py-2.5 text-center disabled:cursor-not-allowed">
+              <span class="">{{"Publish"|translate}}</span>
+              <span class="ltr:ml-2 rtl:mr-2">
+                <svg class="h-5 w-5 " fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z">
+                  </path>
+                </svg>
+              </span>
+              </button>
+            <button *ngSwitchCase="true"
+              [ngClass]="currentTheme == 'dark'?'bg-dark-primary  text-dark-secondary disabled:bg-dark-accent disabled:border-gray-200/10':'bg-light-primary  text-light-secondary disabled:bg-gray-100/10 disabled:border-gray-200/10 '"
+              class=" inline-flex justify-center items-center space-x-2 border border-green-600 hover:bg-light-accent hover:cursor-pointer hover:text-gray-50 focus:ring-2 focus:ring-green-300  font-semibold rounded-3xl  px-5 py-2.5 text-center disabled:cursor-not-allowed">
+              <svg aria-hidden="true" role="status" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101"
+                fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                  fill="#E5E7EB" />
+                <path
+                  d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                  fill="currentColor" />
+              </svg>
+              Loading...
+            </button>
+            </div>
+        </div>
+      </app-form>
+      </div>
+      <div class="create-job px-2" *ngSwitchCase="'Job'">
+        <app-form class="" [fields]="[
+                    { name: 'title', label: 'title', type: 'text',  maxlength:60 , minlength:5, autofocus:true, description:'title maxlength 60 char', required:true, validators: [validators.required] },
+                    { name: 'company', label: 'company', type: 'text', maxlength:60 , minlength:4,  required:true, validators: [validators.required] },
+                    { name: 'workplace', label: 'workplace', type: 'select', options:[{id:1,label:'Office' ,value:'Office'},{id:2,label:'Hyprid',value:'Hyprid'},{id:3,label:'Remote', value:'Remote'}], required:true, validators: [validators.required] },
+                    { name: 'location', label: 'location', type: 'text', maxlength:60 , minlength:5,  required:true, validators: [validators.required] },
+                    { name: 'description', label: 'description', type: 'textarea',  required:true, validators: [validators.required] },
+                    { name: 'type',id:'type', label: 'type', type: 'select',options:[{id:1,label:'full-time',value:'Full-time'},{id:2,label:'part-time',value:'Part-time'}], validators: [] },
+
+                  ]"  (submitted)="onJobFormSubmitted($event)"
+          (formStatus)="checkJobFormStatus($event)">
+          <div class=" mt-2 ltr:text-right rtl:text-left" form-actions>
+            <button (click)="closeCreateNewPostModal()"
+              [ngClass]="currentTheme=='dark'?'border-white/10 hover:text-white':'hover:border-gray-300'"
+              class="inline-flex  shrink-0 rounded-3xl border hover:border  mx-1 px-6 py-2.5 font-semibold text-gray-500 hover:text-black focus:outline-none active:text-white disabled:cursor-not-allowed">
+              {{"cancel"|translate}}
+            </button>
+            <div class="inline-flex" [ngSwitch]="isJobFormSubmitted">
+              <button type="submit" [disabled]="!isJobFormValid" *ngSwitchCase="false"
+                [ngClass]="currentTheme == 'dark'?'bg-dark-primary  text-dark-secondary disabled:bg-dark-accent disabled:border-gray-200/10':'bg-light-primary  text-light-secondary disabled:bg-gray-100/10 disabled:border-gray-200/10 disabled:hover:text-gray-300 '"
+                class=" inline-flex justify-center items-center space-x-2 border border-green-600 hover:bg-light-accent hover:cursor-pointer hover:text-gray-50 focus:ring-2 focus:ring-green-300  font-semibold rounded-3xl  px-5 py-2.5 text-center disabled:cursor-not-allowed">
+                <span class="">{{"Publish"|translate}}</span>
+                <span class="ltr:ml-2 rtl:mr-2">
+                  <svg class="h-5 w-5 " fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z">
+                    </path>
+                  </svg>
+                </span>
+              </button>
+              <button *ngSwitchCase="true"
+                [ngClass]="currentTheme == 'dark'?'bg-dark-primary  text-dark-secondary disabled:bg-dark-accent disabled:border-gray-200/10':'bg-light-primary  text-light-secondary disabled:bg-gray-100/10 disabled:border-gray-200/10 '"
+                class=" inline-flex justify-center items-center space-x-2 border border-green-600 hover:bg-light-accent hover:cursor-pointer hover:text-gray-50 focus:ring-2 focus:ring-green-300  font-semibold rounded-3xl  px-5 py-2.5 text-center disabled:cursor-not-allowed">
+                <svg aria-hidden="true" role="status" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101"
+                  fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                    fill="#E5E7EB" />
+                  <path
+                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                    fill="currentColor" />
+                </svg>
+                Loading...
+              </button>
+            </div>
+          </div>
+        </app-form>
+      </div>
+      </div>
+  </div>
+</app-modal>
+<!-- Create Post Modal -->
+<!-- Toast -->
+<app-toast *ngIf="showToast" [toastType]="toastType" [toastMessage]="toastMessage"
+  (dismiss)="toggleToast()"></app-toast>
+<!-- Toast -->

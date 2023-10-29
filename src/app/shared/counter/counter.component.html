@@ -1,0 +1,26 @@
+<div class="custom-number-input  w-32 ">
+  <label for="custom-input-number" class="w-full capitalize text-sm font-semibold">{{label}}
+  </label>
+  <div class="flex h-10 w-full rounded-lg relative bg-transparent mt-1">
+    <a data-action="decrement" (click)="decrement()"
+      class=" bg-gray-100 text-gray-600 hover:text-gray-700 hover:bg-gray-200 ltr:border-r rtl:border-l h-full w-20 ltr:rounded-l-xl rtl:rounded-r-xl cursor-pointer outline-none">
+      <span class="m-auto font-thin ">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15"></path>
+        </svg>
+      </span>
+    </a>
+    <span
+      class="w-full bg-gray-100 font-semibold text-md hover:text-black flex items-center justify-center text-gray-700 "
+      >{{value}}</span>
+    <a data-action="increment" (click)="increment()"
+      class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:bg-gray-200 ltr:border-l rtl:border-r h-full w-20 ltr:rounded-r-xl rtl:rounded-l-xl cursor-pointer">
+      <span class="m-auto text-2xl font-thin">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path>
+        </svg>
+      </span>
+    </a>
+  </div>

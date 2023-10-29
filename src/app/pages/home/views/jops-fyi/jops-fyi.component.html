@@ -1,0 +1,20 @@
+<div class="w-full max-w-md p-4 rounded-lg">
+  <div class="flex items-center justify-between mb-4">
+    <h5 [ngClass]="currentTheme=='dark'?'text-dark-secondary':''" class="text-xl font-bold leading-none ">{{"Jobs
+      FYI"|translate}}</h5>
+    <a [routerLink]="['/index','jobs']"
+      class="text-sm font-semibold text-emerald-700 hover:underline hover:cursor-pointer">
+      {{"View all"|translate}}
+    </a>
+  </div>
+  <div class="flow-root h-[51vh] overflow-y-scroll">
+    <ul role="list" class=" h-[95%]">
+      <li [ngClass]="currentTheme=='dark'?'text-dark-secondary':''"
+        class="flex-col h-full w-full items-center justify-center align-middle content-center self-center text-center origin-center object-center ">
+        <div class="text-3xl my-2 font-extrabold align-middle self-center items-center content-center">Comming soon
+        </div>
+        <span class="">{{"under constraction"|translate}}</span>
+      </li>
+    </ul>
+  </div>
+</div>

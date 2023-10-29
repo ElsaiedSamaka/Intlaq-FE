@@ -1,0 +1,30 @@
+<!-- For you & Following tabs -->
+<div [ngClass]="currentTheme == 'dark'?'border-white/10 text-dark-secondary':'border-zinc-900/10'"
+  class="mb-4 border-b ">
+  <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent"
+    role="tablist">
+    <li class="mr-2 transition-all hover:backdrop-blur-3xl duration-300" role="presentation"
+      (click)="selecteTap('For you')">
+      <button [class.border-b-4]="selectedTap == 'For you'"
+        class="inline-block border-b-3 border-emerald-300 font-semibold p-4 rounded-t-lg"
+        id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile"
+        aria-selected="false">{{"For you"|translate}}</button>
+    </li>
+    <li class="mr-2 transition-all hover:backdrop-blur-3xl duration-300" role="presentation"
+      (click)="selecteTap('Following')">
+      <button [class.border-b-4]="selectedTap == 'Following'"
+        class="inline-block p-4 border-b-3 border-emerald-300 rounded-t-lg  font-semibold" id="dashboard-tab"
+        data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard"
+        aria-selected="false">{{"Following"|translate}}</button>
+    </li>
+  </ul>
+</div>
+<div id="myTabContent" [ngSwitch]="selectedTap">
+  <!-- time line component -->
+  <app-timeline *ngSwitchCase="'For you'" [FYI]="'For you'" [currentUser]="currentUser"
+    [currentTheme]="currentTheme"></app-timeline>
+  <!-- time line component -->
+  <app-timeline *ngSwitchCase="'Following'" [FYI]="'Following'" [currentUser]="currentUser"
+    [currentTheme]="currentTheme"></app-timeline>
+</div>
+<!-- For you & Following tabs -->

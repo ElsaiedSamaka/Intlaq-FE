@@ -1,0 +1,45 @@
+<div class="user-avatar relative" (click)="toggleDropDownTree()">
+  <ng-container *ngIf="currentUser.user_img;else noUserImg">
+    <div class="p-2 rounded-full border"
+      [ngClass]="currentTheme=='dark'?'border-white/10 hover:border-white/50':'border-zinc-900/10 hover:border-zinc-950/5'">
+    <img *ngIf="currentUser.user_img" id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+      data-dropdown-placement="bottom-start" class="w-6 h-6 rounded-full cursor-pointer" [src]="currentUser.user_img"
+      alt="User dropdown">
+      </div>
+  </ng-container>
+  <ng-template #noUserImg>
+    <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full ">
+      <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+      </svg>
+    </div>
+  </ng-template>
+  <!-- Dropdown menu -->
+  <div *ngIf="showDropDownTree"
+    [ngClass]="currentTheme == 'dark'?'text-dark-secondary bg-zinc-900 divide-gray-100/10':' bg-white divide-gray-100'"
+    id="userDropdown" class="z-10 absolute ltr:-left-28 rtl:-right-28 divide-y  rounded-lg shadow-2xl w-52">
+    <div class="px-4 py-3 text-sm ">
+      <div>{{currentUser.email.split("@")[0]}}</div>
+      <div class="font-medium truncate">{{currentUser.email}}</div>
+    </div>
+    <ul class="py-2 text-sm " aria-labelledby="avatarButton">
+      <li>
+        <a routerLink="/dashboard"
+          class="block px-4 py-2 hover:bg-gray-100/5 hover:font-semibold ">{{"Dashboard"|translate}}</a>
+      </li>
+      <li>
+        <a routerLink="/index/settings"
+          class="block px-4 py-2 hover:bg-gray-100/5 hover:font-semibold ">{{"Settings"|translate}}</a>
+      </li>
+      <li>
+        <a routerLink="/index/profile"
+          class="block px-4 py-2 hover:bg-gray-100/5 hover:font-semibold ">{{"Profile"|translate}}</a>
+      </li>
+    </ul>
+    <div class="py-1">
+      <a routerLink="/signout"
+        class="block px-4 py-2 text-sm hover:bg-gray-100/5 hover:font-semibold hover:cursor-pointer">{{"Sign out"|translate}}</a>
+    </div>
+  </div>
+</div>

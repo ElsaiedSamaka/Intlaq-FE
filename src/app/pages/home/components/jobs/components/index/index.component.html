@@ -1,0 +1,66 @@
+<section class="flex h-[94vh] flex-col gap-2 pt-4 ">
+  <div class="py-4 px-4 mx-auto max-w-screen-2xl min-w-full text-center border rounded-lg lg:py-4 lg:px-12"
+    [ngClass]="currentTheme == 'dark'?'border-white/10':'border-zinc-900/10'">
+    <h1
+      class="mb-4 inline-flex items-center justify-center space-x-2 text-3xl font-extrabold tracking-tight leading-none text-gray-600 md:text-4xl lg:text-5xl ">
+      <span>companies page under construction</span>
+      <span><svg class="w-10 h-10 text-green-400" fill="none" stroke="currentColor" stroke-width="1.5"
+          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25">
+          </path>
+        </svg></span>
+    </h1>
+    <form class="mx-6">
+      <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only :text-white">Search</label>
+      <div class="grid items-end gap-6 mb-6 md:grid-cols-4">
+        <div class="relative">
+          <input type="text" id="small_outlined"
+            class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer"
+            placeholder="" />
+          <label for="small_outlined"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-emerald-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 bg-gray-50 peer-focus:scale-85 peer-focus:-translate-y-3 left-1">Location
+          </label>
+        </div>
+        <div class="relative">
+          <input type="text" id="small_outlined"
+            class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer"
+            placeholder="" />
+          <label for="small_outlined"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-3 scale-75 top-1 px-85 z-10 origin-[0] bg-gray-50 peer-focus:px-2 peer-focus:text-emerald-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-85 peer-focus:-translate-y-3 left-1">Industry
+          </label>
+        </div>
+        <div class="relative">
+          <input type="text" id="small_outlined"
+            class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer"
+            placeholder="" />
+          <label for="small_outlined"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-emerald-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-85 peer-focus:-translate-y-3 left-1">Job
+            title
+          </label>
+        </div>
+        <div class="relative">
+          <select type="text" id="small_outlined"
+            class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer"
+            placeholder="cairo ">
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="grid grid-cols-5 gap-4 h-[73vh] ">
+    <ul class="col-span-2 p-2 border rounded-lg rounded-b-none overflow-y-scroll "
+      [ngClass]="currentTheme == 'dark'?'border-white/10':'border-zinc-900/10'">
+      <app-company-card [currentTheme]="currentTheme"></app-company-card>
+      <app-company-card [currentTheme]="currentTheme"></app-company-card>
+    </ul>
+    <div class="col-span-3 border rounded-lg rounded-b-none h-full overflow-y-scroll"
+      [ngClass]="currentTheme == 'dark'?'border-white/10':'border-zinc-900/10'">
+      asd
+    </div>
+  </div>
+</section>

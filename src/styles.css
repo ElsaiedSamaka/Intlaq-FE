@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+@import url('./styles/dark.theme');
+@import url('./styles/light.theme');
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* tailwind.css */
+
+body{
+  font-family:  'Almarai' ;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  overflow-y: auto;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Important !! */
+  scrollbar-width: thin;
+  scrollbar-color: gray white;
+  /* border-color: rgb(24 24 27 / 0.1); */
+  /* border-color: rgb(255 255 255 / 0.1); */
+}
+
+::-moz-selection {
+  color: #fff;
+  background-color: #128644;
+}
+
+::selection {
+  color: #fff;
+  background-color: #128644;
+  border-radius: 10px
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: gray;
+}

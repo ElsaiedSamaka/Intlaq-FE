@@ -1,0 +1,26 @@
+<section class="flex h-[94vh] flex-col mt-3">
+  <div class="grid grid-cols-4 gap-4 ">
+    <div [ngClass]="currentTheme == 'dark'?'bg-[#18181b] border-white/10':'bg-white border-gray-200'"
+      class="lg:col-span-auto md:col-span-3 sm:col-span-full xs:col-span-full  p-2 border rounded-lg ">
+      <!-- create Post component -->
+      <app-create-post [currentUser]="currentUser" [currentTheme]="currentTheme"></app-create-post>
+      <!-- create Post component -->
+    <!-- content  -->
+    <app-FYI-taps  [currentUser]="currentUser" [currentTheme]="currentTheme"></app-FYI-taps>
+    <!-- content  -->
+
+    </div>
+    <!-- left side info bar -->
+    <div [ngClass]="currentTheme == 'dark'?'bg-[#18181b] border-white/10':'bg-white border-gray-200'"
+      class="md:block xs:hidden border rounded-lg">
+      <!-- latest contacts -->
+      <app-latest-contacts [currentTheme]="currentTheme" [currentUser]="currentUser"></app-latest-contacts>
+      <!-- latest contacts -->
+      <hr class="border" [ngClass]="currentTheme == 'dark'?'border-white/10':'border-zinc-900/10'">
+      <!-- Jobs For You -->
+      <app-jops-fyi [currentTheme]="currentTheme" [currentUser]="currentUser"></app-jops-fyi>
+      <!-- Jobs For You -->
+      </div>
+    <!-- left side info bar -->
+  </div>
+</section>

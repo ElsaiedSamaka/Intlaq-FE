@@ -1,0 +1,43 @@
+<section [class.text-dark-secondary]="currentTheme == 'dark'" class="py-8 ">
+  <div class=" px-4">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-lg lg:text-2xl font-bold">{{"Comments"|translate}} ({{comments.length}})</h2>
+    </div>
+    <form class="mb-6 ">
+      <label for="comment" class="sr-only">Your comment</label>
+      <textarea [ngClass]="currentTheme =='dark'?'bg-white/10 ring-2 ring-white/5 transition':'ring-2 ring-zinc-900/5'"
+        [class.text-white]="currentTheme=='dark'" id="comment" rows="3"
+        class="px-2 rounded-md w-full resize-none  border-0 focus:ring-0 focus:outline-none "
+      [(ngModel)]="content"  [ngModelOptions]="{standalone: true}" placeholder="Write a comment..." required></textarea>
+    <ng-container [ngSwitch]="editOrSubmitOrReply">
+      <button type="button" (click)="postComment($event)" *ngSwitchCase="'submit'"
+        class="text-white bg-zinc-800 hover:bg-zinc-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-1">{{"Comment"|translate}}</button>
+              <button type="button" (click)="editComment(comment.id)" *ngSwitchCase="'edit'"
+                class="text-white bg-zinc-800 hover:bg-zinc-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-1">{{"Update"|translate}}</button>
+                <button type="button" (click)="cancel()" *ngSwitchCase="'edit'"
+                  class="text-white bg-zinc-800 hover:bg-zinc-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-1">{{"cancel"|translate}}</button>
+                <button type="button" (click)="postReply()" *ngSwitchCase="'reply'"
+                  class="text-white bg-zinc-800 hover:bg-zinc-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-1">{{"Reply"|translate}}</button>
+                <button type="button" (click)="cancel()" *ngSwitchCase="'reply'"
+                  class="text-white bg-zinc-800 hover:bg-zinc-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-1">{{"cancel"|translate}}</button>
+                    <button type="button" (click)="editReply()" *ngSwitchCase="'editReply'"
+                      class="text-white bg-zinc-800 hover:bg-zinc-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-1">{{"Update"|translate}}</button>
+                    <button type="button" (click)="cancel()" *ngSwitchCase="'editReply'"
+                      class="text-white bg-zinc-800 hover:bg-zinc-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-1">{{"cancel"|translate}}</button>
+              </ng-container>
+    </form>
+    <section class="h-80 overflow-auto">
+      <ng-container *ngFor="let comment of comments">
+      <!-- comment -->
+      <app-comment (emitRemovedComment)="handleRemovedComment($event)" (emitReplyComment)="handleCommentReply($event)"
+        (emitEditComment)="handleCommentEdit($event)"
+        [comment]="comment" [currentUser]="currentUser"
+     (emitEditReply)="handleReplyEdit($event)"  (emitRemovedReply)="handleRemovedReply($event)" [currentTheme]="currentTheme"></app-comment>
+      <!-- comment -->
+    
+      </ng-container>
+    </section>
+  </div>
+</section>
+<!-- appt toast -->
+<app-toast *ngIf="showToast" toastType="error" [toastMessage]="toastMessage" (dismiss)="toggleToast()"></app-toast>
