@@ -88,7 +88,7 @@
       </div>
       <div class="create-job px-2" *ngSwitchCase="'Job'">
         <app-form class="" [fields]="[
-                    { name: 'title', label: 'title', type: 'text',  maxlength:60 , minlength:5, autofocus:true, description:'title maxlength 60 char', required:true, validators: [validators.required] },
+                    { name: 'jobTitle', label: 'title', type: 'text',  maxlength:60 , minlength:5, autofocus:true, description:'jobTitle maxlength 60 char', required:true, validators: [validators.required] },
                     { name: 'company', label: 'company', type: 'text', maxlength:60 , minlength:4,  required:true, validators: [validators.required] },
                     { name: 'workplace', label: 'workplace', type: 'select', options:[{id:1,label:'Office' ,value:'Office'},{id:2,label:'Hyprid',value:'Hyprid'},{id:3,label:'Remote', value:'Remote'}], required:true, validators: [validators.required] },
                     { name: 'location', label: 'location', type: 'text', maxlength:60 , minlength:5,  required:true, validators: [validators.required] },
