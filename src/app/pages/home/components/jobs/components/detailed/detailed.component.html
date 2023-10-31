@@ -1,1 +1,18 @@
-<pre>{{job|json}}</pre>
+<div class="flex flex-col space-y-2 p-2  h-full">
+  <div
+    [ngClass]="currentTheme == 'dark'?'bg-[#18181b] border-white/10 text-dark-secondary':'bg-white border-gray-200 text-zinc-900'"
+    class="border rounded-md h-32 p-2">
+    <h3 class="text-3xl font-extrabold" [ngClass]="currentTheme=='dark'?'text-dark-secondary':''">{{data.job.jobTitle}}
+    </h3>
+    <div class="flex items-center space-x-2">
+      <span class="border bg-white/5 px-2 py-1 rounded-md"
+        [ngClass]="currentTheme == 'dark'? 'border-white/10':'border-gray-200'">{{data.job.type}}</span>
+      <span class="border bg-white/5 px-2 py-1 rounded-md"
+        [ngClass]="currentTheme == 'dark'? 'border-white/10':'border-gray-200'">{{data.job.workplace}}</span>
+    </div>
+    <!-- Job header (title, company, location, createdAt, Apply) and share -->
+  </div>
+  <div class="bg-green-300">
+    job details (description, type, workplace)
+  </div>
+</div>
