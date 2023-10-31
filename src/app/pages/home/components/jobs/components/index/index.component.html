@@ -3,7 +3,8 @@
     [ngClass]="currentTheme == 'dark'?'border-white/10':'border-zinc-900/10'">
     <h1
       class="mb-4 inline-flex items-center justify-center space-x-2 text-3xl font-extrabold tracking-tight leading-none text-gray-600 md:text-4xl lg:text-5xl ">
-      <span>companies page under construction</span>
+      <span>search over <strong [class.gradient-text]="currentTheme=='light'" [class.text-gray-200]="currentTheme=='dark'"
+          class="font-bold text-5xl inline-block">100+</strong> jobs</span>
       <span><svg class="w-10 h-10 text-green-400" fill="none" stroke="currentColor" stroke-width="1.5"
           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round"
@@ -52,11 +53,19 @@
       </div>
     </form>
   </div>
-  <div class="grid grid-cols-5 gap-4 h-[73vh] ">
-    <ul class="col-span-2 p-2 border rounded-lg rounded-b-none overflow-y-scroll "
+  <div class="grid grid-cols-5 gap-4 h-[73vh]">
+    <ul class="col-span-2 p-2 border rounded-lg rounded-b-none overflow-y-scroll " #scrollContainer
       [ngClass]="currentTheme == 'dark'?'border-white/10':'border-zinc-900/10'">
-      <app-company-card [currentTheme]="currentTheme"></app-company-card>
-      <app-company-card [currentTheme]="currentTheme"></app-company-card>
+    <ng-container *ngIf="jobs.length>0;else noJobs">
+      <app-job-card [currentTheme]="currentTheme" *ngFor="let job of jobs" [job]="job"></app-job-card>
+    </ng-container>
+    <ng-template #noJobs>
+      <div [ngClass]="currentTheme == 'dark' ? 'text-dark-secondary' : ''"
+        class="flex-col h-full w-full items-center justify-center align-middle content-center self-center text-center origin-center object-center">
+        <div class="text-7xl my-2 font-extrabold align-middle self-center items-center content-center">404</div>
+        <span class="">{{ 'no jobs found' | translate }}</span>
+      </div>
+    </ng-template>
     </ul>
     <div class="col-span-3 border rounded-lg rounded-b-none h-full overflow-y-scroll"
       [ngClass]="currentTheme == 'dark'?'border-white/10':'border-zinc-900/10'">

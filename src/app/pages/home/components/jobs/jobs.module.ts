@@ -1,12 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ViewsModule } from '../../views/views.module';
 import { IndexComponent } from './components/index/index.component';
 import { JobsRoutingModule } from './jobs-routing.module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpLoaderFactory } from 'src/app/app.module';
+import { HttpClient } from '@angular/common/http';
+import { ViewsModule } from './views/views.module';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, ViewsModule, JobsRoutingModule],
+  imports: [
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+    CommonModule,
+    SharedModule,
+    ViewsModule,
+    JobsRoutingModule,
+  ],
   declarations: [IndexComponent],
 })
 export class JobsModule {}

@@ -8,6 +8,7 @@ import { SocketService } from './socket.service';
 })
 export class PostsService {
   posts$ = new BehaviorSubject<any[]>([]);
+  jobs$ = new BehaviorSubject<any[]>([]);
   savedPosts$ = new BehaviorSubject<any[]>([]);
   lovedPosts$ = new BehaviorSubject<any[]>([]);
   currentPage = 0; // Current page of posts
@@ -17,11 +18,23 @@ export class PostsService {
     private apiService: ApiService,
     private socketService: SocketService
   ) {}
+  // get all posts
   getAll(): Observable<any[]> {
     return this.apiService.get(`/api/posts?page=${0}&size=${5}`).pipe(
       tap((response) => {
         const { rows: posts, totalPages, currentPage } = response;
         this.posts$.next(posts);
+        this.totalPages = totalPages;
+        this.currentPage = currentPage;
+      })
+    );
+  }
+  // get all jobs
+  getJobs(): Observable<any[]> {
+    return this.apiService.get(`/api/posts/jobs?page=${0}&size=${5}`).pipe(
+      tap((response) => {
+        const { rows: jobs, totalPages, currentPage } = response;
+        this.jobs$.next(jobs);
         this.totalPages = totalPages;
         this.currentPage = currentPage;
       })
