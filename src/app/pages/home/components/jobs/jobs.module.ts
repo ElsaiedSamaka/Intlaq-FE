@@ -8,6 +8,7 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { ViewsModule } from './views/views.module';
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
+import { DetailedComponent } from './components/detailed/detailed.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,6 @@ import { PlaceholderComponent } from './components/placeholder/placeholder.compo
     ViewsModule,
     JobsRoutingModule,
   ],
-  declarations: [IndexComponent, PlaceholderComponent],
+  declarations: [IndexComponent, PlaceholderComponent, DetailedComponent],
 })
 export class JobsModule {}
