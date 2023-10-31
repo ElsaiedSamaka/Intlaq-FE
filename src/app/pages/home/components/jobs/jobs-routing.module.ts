@@ -4,6 +4,7 @@ import { IndexComponent } from './components/index/index.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DetailedComponent } from './components/detailed/detailed.component';
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
+import { JobResolverService } from 'src/core/resolvers/job-resolver.service';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
       {
         path: ':id',
         component: DetailedComponent,
-        // resolve: { conversation: ConversationResolverService },
+        resolve: { job: JobResolverService },
       },
       { path: '', component: PlaceholderComponent },
     ],

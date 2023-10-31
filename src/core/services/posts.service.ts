@@ -80,8 +80,11 @@ export class PostsService {
         })
       );
   }
-  getById(id: string): Observable<any> {
+  getArticleById(id: string): Observable<any> {
     return this.apiService.get(`/api/posts/${id}`);
+  }
+  getJobById(id: string): Observable<any>{
+    return this.apiService.get(`/api/posts/jobs/${id}`)
   }
   deleteById(id: string): Observable<any> {
     return this.apiService.delete(`/api/posts/${id}`).pipe(

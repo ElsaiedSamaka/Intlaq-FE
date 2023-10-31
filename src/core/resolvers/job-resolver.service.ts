@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  Resolve,
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { EMPTY, catchError } from 'rxjs';
 import { PostsService } from '../services/posts.service';
+import { EMPTY, catchError } from 'rxjs';
 
-@Injectable()
-export class ArticleResolverService implements Resolve<any> {
+@Injectable({
+  providedIn: 'root',
+})
+export class JobResolverService {
   constructor(private router: Router, private postsService: PostsService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const { id } = route.params;
-    return this.postsService.getArticleById(id).pipe(
+    return this.postsService.getJobById(id).pipe(
       catchError((err) => {
         console.log('error issued with template resolver', err);
         this.router.navigateByUrl('not-found');

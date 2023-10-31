@@ -107,7 +107,7 @@ export class ArticleComponent implements OnInit, OnChanges {
     }
   }
   updateArticle(): void {
-    this.postsService.getById(this.article.id).subscribe({
+    this.postsService.getArticleById(this.article.id).subscribe({
       next: (updatedArticle: any) => {
         this.article = updatedArticle;
       },
