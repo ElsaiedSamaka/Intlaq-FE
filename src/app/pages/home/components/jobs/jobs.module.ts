@@ -7,6 +7,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { HttpClient } from '@angular/common/http';
 import { ViewsModule } from './views/views.module';
+import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,6 @@ import { ViewsModule } from './views/views.module';
     ViewsModule,
     JobsRoutingModule,
   ],
-  declarations: [IndexComponent],
+  declarations: [IndexComponent, PlaceholderComponent],
 })
 export class JobsModule {}

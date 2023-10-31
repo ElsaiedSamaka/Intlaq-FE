@@ -14,7 +14,8 @@
         </svg>
       </div>
       <div class="flex-col ml-1">
-        <div class="flex space-x-1 text-sm text-emerald-500"><b>Company name</b> <span class="">(cairo)</span>
+        <div class="flex space-x-1 text-sm text-emerald-500"><b>{{job.company?job.company:'N/A'}}</b> <span
+            class="">({{job.location}})</span>
         </div>
         <span>
           <div class="flex items-center ">
@@ -86,7 +87,7 @@
   </div>
   <hr [ngClass]="currentTheme=='dark'?'border-white/5':''" class="my-2 border">
   <div class="p-2 flex justify-between items-center">
-    <h3 class="font-semibold text-xl">Full Stack developer</h3>
+    <h3 class="font-semibold text-xl">{{job.jobTitle}}</h3>
     <em class=>12 d</em>
   </div>
 </li>

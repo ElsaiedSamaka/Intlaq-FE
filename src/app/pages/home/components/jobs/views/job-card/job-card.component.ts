@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class JobCardComponent implements OnInit {
   @Input() currentTheme: string = '';
-  @Input() job: Object = {}
+  @Input() job;
   constructor() {}
 
   ngOnInit() {}
