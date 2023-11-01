@@ -15,7 +15,7 @@
     <a class=" group block">
       <div class="flex items-center relative ">
         <ng-container [ngSwitch]="article.isAnonymous">
-          <div class="flex items-center " *ngSwitchCase='false'>
+          <div class="flex items-center group" *ngSwitchCase='false'>
             <img class="inline-block h-10 w-10 rounded-full "
             [src]="article.user?.user_img" alt="" />
                 <div class="ml-3 flex items-center">
@@ -24,14 +24,13 @@
                     {{article.user.email}}
                   </p>
                   <span class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                    @Intlaq . {{article.createdAt |date}}
+                    @Cit. {{article.createdAt |date}}
                   </span>
                 </div>
-          </div>
                 <!-- user popover -->
-        <!-- user popover -->
-        <app-user-popover [currentTheme]="currentTheme" [currentUser]="currentUser" [article]="article"></app-user-popover>
-        <!-- user popover -->
+                <app-user-popover [currentTheme]="currentTheme" [currentUser]="currentUser" [article]="article"></app-user-popover>
+                <!-- user popover -->
+          </div>
         <div *ngSwitchCase="true">
           <div class=" inline-flex items-center justify-center">
             <svg [ngClass]="currentTheme == 'dark'?'ring-gray-300/10':'ring-gray-300'"
@@ -184,7 +183,7 @@
       <a class=" group block">
         <div class="flex items-center relative ">
           <ng-container [ngSwitch]="article.isAnonymous">
-            <div class="flex items-center " *ngSwitchCase='false'>
+            <div class="flex items-center groub" *ngSwitchCase='false'>
               <img class="inline-block h-10 w-10 rounded-full " [src]="article.user?.user_img" alt="" />
               <div class="ml-3 flex items-center">
                 <p [class.text-gray-200]="currentTheme=='dark'" class="text-base leading-6 font-medium peer">
@@ -192,12 +191,13 @@
                 </p>
                 <span
                   class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                  @Intlaq . {{article.createdAt |date}}
+                  @Cit . {{article.createdAt |date}}
                 </span>
               </div>
-            </div>
-            <!-- user popover -->
-
+              <!-- user popover -->
+              <app-user-popover [currentTheme]="currentTheme" [currentUser]="currentUser" [article]="article"></app-user-popover>
+              <!-- user popover -->
+              </div>
             <div *ngSwitchCase="true">
               <div class=" inline-flex items-center justify-center">
                 <svg [ngClass]="currentTheme == 'dark'?'ring-gray-300/10':'ring-gray-300'"
