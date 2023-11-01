@@ -3,7 +3,7 @@
     [ngClass]="currentTheme == 'dark'?'bg-[#18181b] border-white/10 text-dark-secondary':'bg-white border-gray-200 text-zinc-900'"
     class="border rounded-md  p-2 space-y-2">
    <div class="header flex justify-between">
-    <h3 class="text-3xl font-extrabold" [ngClass]="currentTheme=='dark'?'text-dark-secondary':''">{{data.job.jobTitle}}
+    <h3 class="text-3xl font-extrabold" [ngClass]="currentTheme=='dark'?'text-dark-secondary':''">{{data.job.job.jobTitle}}
     </h3>
       <div
         [ngClass]="currentTheme=='dark'?'border-white/5 text-dark-secondary hover:text-gray-200 hover:bg-zinc-700/10':'hover:bg-zinc-50'"
@@ -18,12 +18,12 @@
       </div>
     <div class="flex items-center space-x-2">
       <span class="border bg-white/5 px-2 py-1 rounded-md"
-        [ngClass]="currentTheme == 'dark'? 'border-white/10':'border-gray-200'">{{data.job.type}}</span>
+        [ngClass]="currentTheme == 'dark'? 'border-white/10':'border-gray-200'">{{data.job.job.type}}</span>
       <span class="border bg-white/5 px-2 py-1 rounded-md"
-        [ngClass]="currentTheme == 'dark'? 'border-white/10':'border-gray-200'">{{data.job.workplace}}</span>
+        [ngClass]="currentTheme == 'dark'? 'border-white/10':'border-gray-200'">{{data.job.job.workplace}}</span>
     </div>
     <div>
-      <span class="font-semibold text-blue-400 inline-flex items-center">{{data.job.company}}
+      <span class="font-semibold text-blue-400 inline-flex items-center">{{data.job.job.company}}
         <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round"
@@ -31,20 +31,20 @@
           </path>
         </svg> </span>
       -
-      <span class="font-semibold">({{data.job.location}})</span>
+      <span class="font-semibold">({{data.job.job.location}})</span>
     </div>
-    <span>posted at {{data.job.createdAt |date}}</span>
+    <span>posted at {{data.job.job.createdAt |date}}</span>
     <hr>
     <div class="flex items-center justify-between">
       <div>
         <strong class="text-3xl">
           123
         </strong>
-        Applicants for ( x ) role
+        Applicants for ( 1 ) role
       </div>
       <div class="flex items-center rtl:justify-end ltr:justify-end">
-        <button type="button" (click)="toggleConfirmationApplyModal()"
-          class="text-zinc-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 transition-all duration-300 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-semibold rounded-xl text-sm px-5 py-2.5 text-center mr-2 ">Easy
+        <button type="button" (click)="toggleConfirmationApplyModal()" [disabled]="data.job.alreadyApplied"
+          class="text-zinc-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 transition-all duration-300 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-semibold rounded-xl text-sm px-5 py-2.5 text-center mr-2 disabled:bg-gradient-to-r disabled:from-gray-200 disabled:to-gray-200 disabled:cursor-not-allowed ">Easy
           Apply</button>
         <button type="button"
           class="text-zinc-700 border border-zinc-700/10 hover:bg-zinc-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-zinc-300 font-medium rounded-xl text-sm p-2  text-center inline-flex items-center mr-2 dark:border-zinc-500/30 dark:text-zinc-500 dark:hover:text-white dark:focus:ring-zinc-800 dark:hover:bg-zinc-500">
@@ -60,7 +60,7 @@
     </div>
   </div>
   <pre class="overflow-x-hidden">
-          {{data.job | json }}
+          {{data.job.job | json }}
       </pre>
 </div>
 <!-- confirmation apply modal -->

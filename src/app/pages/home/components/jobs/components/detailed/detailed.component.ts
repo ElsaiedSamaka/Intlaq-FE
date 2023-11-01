@@ -29,6 +29,7 @@ export class DetailedComponent implements OnInit {
   }
   getJob(): void {
     this.route.data.subscribe((data) => {
+      console.log('data', data);
       this.data = data;
     });
   }
@@ -64,6 +65,5 @@ export class DetailedComponent implements OnInit {
           this.getJob();
         },
       });
-    this.toggleConfirmationApplyModal();
   }
 }
