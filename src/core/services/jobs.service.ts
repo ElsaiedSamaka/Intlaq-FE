@@ -21,7 +21,7 @@ export class JobsService {
   }
   // Create new application for specific job
   createApplication(jobId: string, userId: string): Observable<any> {
-    return this.apiService.post(`/api/jobs/applications`);
+    return this.apiService.post(`/api/jobs/applications`, { jobId, userId });
   }
   // Update application status
   updateApplication(jobId: string, userId: string): Observable<any> {
