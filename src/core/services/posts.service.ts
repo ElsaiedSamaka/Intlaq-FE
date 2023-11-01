@@ -30,15 +30,24 @@ export class PostsService {
     );
   }
   // get all jobs
-  getJobs(): Observable<any[]> {
-    return this.apiService.get(`/api/posts/jobs?page=${0}&size=${5}`).pipe(
-      tap((response) => {
-        const { rows: jobs, totalPages, currentPage } = response;
-        this.jobs$.next(jobs);
-        this.totalPages = totalPages;
-        this.currentPage = currentPage;
-      })
-    );
+  getJobs(
+    jobTitle: string,
+    company: string,
+    workplace: string,
+    location: string
+  ): Observable<any[]> {
+    return this.apiService
+      .get(
+        `/api/posts/jobs?page=${0}&size=${5}&jobTitle=${jobTitle}&company=${company}&workplace=${workplace}&location=${location}`
+      )
+      .pipe(
+        tap((response) => {
+          const { rows: jobs, totalPages, currentPage } = response;
+          this.jobs$.next(jobs);
+          this.totalPages = totalPages;
+          this.currentPage = currentPage;
+        })
+      );
   }
   getMoreForyouPosts(): Observable<any[]> {
     if (this.currentPage >= this.totalPages) {

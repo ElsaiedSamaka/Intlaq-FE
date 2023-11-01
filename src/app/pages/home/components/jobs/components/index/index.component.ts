@@ -34,16 +34,18 @@ export class IndexComponent implements OnInit {
     this.getJobs();
   }
   getJobs(): void {
-    this.postService.getJobs().subscribe({
-      next: (response) => {
-        this.jobs = this.postService.jobs$.value;
-      },
-      error: (err) => {
-        console.log('error getting jobs', err);
-      },
-      complete: () => {
-        console.log('jobs', this.jobs);
-      },
-    });
+    this.postService
+      .getJobs('jobTitle', 'company', 'workplace', 'location')
+      .subscribe({
+        next: (response) => {
+          this.jobs = this.postService.jobs$.value;
+        },
+        error: (err) => {
+          console.log('error getting jobs', err);
+        },
+        complete: () => {
+          console.log('jobs', this.jobs);
+        },
+      });
   }
 }
