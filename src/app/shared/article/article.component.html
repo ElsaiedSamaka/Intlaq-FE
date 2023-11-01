@@ -29,7 +29,9 @@
                 </div>
           </div>
                 <!-- user popover -->
-        
+        <!-- user popover -->
+        <app-user-popover [currentTheme]="currentTheme" [currentUser]="currentUser" [article]="article"></app-user-popover>
+        <!-- user popover -->
         <div *ngSwitchCase="true">
           <div class=" inline-flex items-center justify-center">
             <svg [ngClass]="currentTheme == 'dark'?'ring-gray-300/10':'ring-gray-300'"
