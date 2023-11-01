@@ -15,7 +15,16 @@
     <form class="mx-6">
       <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only :text-white">Search</label>
       <div class="grid items-end gap-6 mb-6 md:grid-cols-4">
-        <div class="relative">
+          <div class="relative title">
+            <input type="text" id="small_outlined"
+              class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer"
+              placeholder="" />
+            <label for="small_outlined"
+              class="absolute text-sm text-gray-500 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-emerald-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-85 peer-focus:-translate-y-3 left-1">Job
+              title
+            </label>
+          </div>
+        <div class="relative location">
           <input type="text" id="small_outlined"
             class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer"
             placeholder="" />
@@ -23,30 +32,21 @@
             class="absolute text-sm text-gray-500 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] px-2 peer-focus:px-2 peer-focus:text-emerald-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 bg-gray-50 peer-focus:scale-85 peer-focus:-translate-y-3 left-1">Location
           </label>
         </div>
-        <div class="relative">
+        <div class="relative company">
           <input type="text" id="small_outlined"
             class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer"
             placeholder="" />
           <label for="small_outlined"
-            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-3 scale-75 top-1 px-85 z-10 origin-[0] bg-gray-50 peer-focus:px-2 peer-focus:text-emerald-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-85 peer-focus:-translate-y-3 left-1">Industry
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-3 scale-75 top-1 px-85 z-10 origin-[0] bg-gray-50 peer-focus:px-2 peer-focus:text-emerald-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-85 peer-focus:-translate-y-3 left-1">company
           </label>
         </div>
-        <div class="relative">
-          <input type="text" id="small_outlined"
-            class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer"
-            placeholder="" />
-          <label for="small_outlined"
-            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-3 scale-75 top-1 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-emerald-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-85 peer-focus:-translate-y-3 left-1">Job
-            title
-          </label>
-        </div>
-        <div class="relative">
+        <div class="relative workplace">
           <select type="text" id="small_outlined"
-            class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer"
-            placeholder="cairo ">
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+            class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer">
+            <option value="">Select</option>
+            <option value="Office">Office</option>
+            <option value="Hyprid">Hyprid</option>
+            <option value="Remote">Remote</option>
 
           </select>
         </div>
