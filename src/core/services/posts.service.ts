@@ -83,7 +83,7 @@ export class PostsService {
   getArticleById(id: string): Observable<any> {
     return this.apiService.get(`/api/posts/${id}`);
   }
-  getJobById(id: string, userId:string): Observable<any> {
+  getJobById(id: string, userId: string): Observable<any> {
     return this.apiService.post(`/api/posts/jobs/${id}`, {
       jobId: id,
       userId: userId,
@@ -127,8 +127,8 @@ export class PostsService {
         })
       );
   }
-  getSaved(): Observable<any[]> {
-    return this.apiService.get('/api/posts/user/saved-posts').pipe(
+  getSaved(userId: string): Observable<any[]> {
+    return this.apiService.post('/api/posts/user/saved-posts', { userId }).pipe(
       tap((savedPosts) => {
         this.savedPosts$.next(savedPosts);
       })

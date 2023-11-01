@@ -24,7 +24,8 @@ export class HomeComponent implements OnInit {
     this.getCurrentUser();
   }
   getSavedPosts(): void {
-    this.postsService.getSaved().subscribe({
+    const userId = this.currentUser.id;
+    this.postsService.getSaved(userId).subscribe({
       next: (savedArticles) => {
         this.savedArticles = this.postsService.savedPosts$.value;
       },
