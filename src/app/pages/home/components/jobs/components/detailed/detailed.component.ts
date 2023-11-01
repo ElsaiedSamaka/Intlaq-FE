@@ -54,7 +54,7 @@ export class DetailedComponent implements OnInit {
   }
   applyJob() {
     this.jobsService
-      .createApplication(this.data.job.id, this.currentUser.id)
+      .createApplication(this.data.job.job.id, this.currentUser.id)
       .subscribe({
         next: () => {},
         error: (err) => {
