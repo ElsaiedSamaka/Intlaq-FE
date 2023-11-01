@@ -10,6 +10,7 @@ import { ThemeService } from 'src/app/shared/services/theme.service';
 export class DetailedComponent implements OnInit {
   data;
   currentTheme: string = '';
+  showConfirmationApplyModal: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,5 +30,8 @@ export class DetailedComponent implements OnInit {
     this.themeService.theme$.subscribe((theme) => {
       this.currentTheme = theme;
     });
+  }
+  toggleConfirmationApplyModal() {
+    this.showConfirmationApplyModal = !this.showConfirmationApplyModal;
   }
 }
