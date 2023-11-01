@@ -47,7 +47,6 @@ export class IndexComponent implements OnInit {
 
     this.postService.getJobs(jobTitle, company, workplace, location).subscribe({
       next: (response) => {
-        console.log('response', response);
         this.jobs = this.postService.jobs$.value;
       },
       error: (err) => {
