@@ -52,7 +52,18 @@ export class DetailedComponent implements OnInit {
     this.showConfirmationApplyModal = !this.showConfirmationApplyModal;
   }
   applyJob() {
-    this.jobsService.createApplication(this.data.id, this.currentUser.id);
+    this.jobsService
+      .createApplication(this.data.job.id, this.currentUser.id)
+      .subscribe({
+        next: () => {},
+        error: (err) => {
+          console.log('err', err);
+        },
+        complete: () => {
+          this.toggleConfirmationApplyModal();
+          this.getJob();
+        },
+      });
     this.toggleConfirmationApplyModal();
   }
 }
