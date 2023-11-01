@@ -22,10 +22,11 @@ export class HomeComponent implements OnInit {
     this.getSavedPosts();
     this.getCurrentTheme();
     this.getCurrentUser();
+    this.authService.getCurrentUser();
   }
   getSavedPosts(): void {
-    const userId = this.currentUser.id;
-    this.postsService.getSaved(userId).subscribe({
+    const currentUser = this.authService.getCurrentUser();
+    this.postsService.getSaved(currentUser.id).subscribe({
       next: (savedArticles) => {
         this.savedArticles = this.postsService.savedPosts$.value;
       },
