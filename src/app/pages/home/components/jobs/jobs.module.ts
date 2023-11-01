@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { ViewsModule } from './views/views.module';
 import { PlaceholderComponent } from './components/placeholder/placeholder.component';
 import { DetailedComponent } from './components/detailed/detailed.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { DetailedComponent } from './components/detailed/detailed.component';
     CommonModule,
     SharedModule,
     ViewsModule,
+    ReactiveFormsModule,
     JobsRoutingModule,
   ],
   declarations: [IndexComponent, PlaceholderComponent, DetailedComponent],

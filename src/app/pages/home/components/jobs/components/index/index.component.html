@@ -12,11 +12,11 @@
           </path>
         </svg></span>
     </h1>
-    <form class="mx-6">
+    <form [formGroup]="searchForm" (ngSubmit)="getJobs()" class="mx-6">
       <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only :text-white">Search</label>
       <div class="grid items-end gap-6 mb-6 md:grid-cols-4">
           <div class="relative title">
-            <input type="text" id="small_outlined"
+            <input type="text" id="small_outlined" formControlName="jobTitle"
               class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer"
               placeholder="" />
             <label for="small_outlined"
@@ -25,7 +25,7 @@
             </label>
           </div>
         <div class="relative location">
-          <input type="text" id="small_outlined"
+          <input type="text" id="small_outlined" formControlName="location"
             class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer"
             placeholder="" />
           <label for="small_outlined"
@@ -33,7 +33,7 @@
           </label>
         </div>
         <div class="relative company">
-          <input type="text" id="small_outlined"
+          <input type="text" id="small_outlined" formControlName="company"
             class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer"
             placeholder="" />
           <label for="small_outlined"
@@ -41,7 +41,7 @@
           </label>
         </div>
         <div class="relative workplace">
-          <select type="text" id="small_outlined"
+          <select type="text" id="small_outlined" formControlName="workplace"
             class="block p-4 pl-4  border rounded-full bg-gray-50 focus:ring-zinc-500 focus:border-zinc-500 px-2.5 pb-1.5 pt-3 w-full text-sm text-gray-900 border-1 border-gray-300 focus:outline-none focus:ring-0 peer">
             <option value="">Select</option>
             <option value="Office">Office</option>
@@ -51,6 +51,7 @@
           </select>
         </div>
       </div>
+      <button type="submit">Search</button>
     </form>
   </div>
   <div class="grid grid-cols-5 gap-4 h-[73vh]">
